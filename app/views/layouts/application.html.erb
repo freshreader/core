@@ -5,18 +5,29 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if logged_in? %>
-      <h1>You are Logged In, <%= current_user.account_number %></h1>
-      <%= button_to "Logout", '/logout', method: :post %>
-    <% else %>
-      <%= button_to "Login", '/login', method: :get %>
-      <%= button_to "Generate account", '/signup', method: :get %>
-    <% end %>
+    <div class="flex">
+      <div class="flex-1">
+        <a href="<% if logged_in? %>/articles<% else %>/<% end %>">
+          <span>Freshreader</span>
+        </a>
+      </div>
+      <p>
+        <% if logged_in? %>
+          <%= current_user.account_number %>
+          <%= link_to "Logout", '/logout', method: :post %>
+        <% else %>
+          <%= link_to "Login", '/login', method: :get %>
+          <%= link_to "Generate account", '/signup', method: :get %>
+        <% end %>
+      </p>
+    </div>
 
     <% flash.each do |type, msg| %>
       <div>
