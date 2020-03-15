@@ -3,6 +3,7 @@ require 'securerandom'
 class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   validates :account_number, uniqueness: true, presence: true
+  validates_format_of :account_number, :with => /\A\d{16}\z/
 
   def self.generate_account_number
     new_account_number = generate_16_digit_number
