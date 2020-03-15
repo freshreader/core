@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if @user = User.find_by(account_number: params[:account_number])
+    if @user = User.find_by(account_number: params[:account_number].delete(' '))
       session[:user_id] = @user.id
       redirect_to :articles
     else
-      redirect_to :login, flash: { error: 'invalid account number' }
+      redirect_to :login, flash: { error: "This account number does not exist." }
     end
   end
 
