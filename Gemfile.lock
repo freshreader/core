@@ -190,6 +190,9 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
+    validate_url (1.0.8)
+      activemodel (>= 3.0.0)
+      public_suffix
     web-console (4.0.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -231,6 +234,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
+  validate_url
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

@@ -14,9 +14,9 @@ class DeleteOldArticlesTest < ActiveSupport::TestCase
   end
 
   test "task deletes articles created more than 14 days ago" do
-    @article_created_15_days_ago = Article.new(url: 'foo', user: @user, created_at: 15.days.ago)
+    @article_created_15_days_ago = Article.new(url: 'https://freshreader.app/old', user: @user, created_at: 15.days.ago)
     assert @article_created_15_days_ago.save
-    @article_created_13_days_ago = Article.new(url: 'bar', user: @user, created_at: 13.days.ago)
+    @article_created_13_days_ago = Article.new(url: 'https://freshreader.app/less-old', user: @user, created_at: 13.days.ago)
     assert @article_created_13_days_ago.save
 
     Rake::Task["delete_old_articles"].invoke
