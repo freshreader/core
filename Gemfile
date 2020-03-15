@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Provides URL validation in ActiveRecord
 gem "validate_url"
+
+gem "htmlentities", "~> 4.3"
