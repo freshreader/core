@@ -22,10 +22,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Ruby 2.7
+    - name: Set up Ruby from .ruby-version file
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.7.x
+        ruby-version: .ruby-version
+
+    - name: Print Ruby version
+      run: ruby -v
         
     - name: Set up Bundler cache
       uses: actions/cache@v1
