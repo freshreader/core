@@ -19,12 +19,11 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-    - name: Set up Ruby 2.7
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.7.x
+    - name: Install Ruby version specified in `.ruby-version`
+      uses: eregon/use-ruby-action@master
         
     - name: Set up Bundler cache
       uses: actions/cache@v1
