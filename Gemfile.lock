@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/sass/sassc-ruby.git
+  revision: d49229898c5c4e8a142129bdb5043bb01a479812
+  ref: d49229898c5c4e8a142129bdb5043bb01a479812
+  specs:
+    sassc (2.2.1)
+      ffi (~> 1.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -154,8 +162,6 @@ GEM
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.2.1)
-      ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
       sassc (>= 2.0)
@@ -219,6 +225,7 @@ DEPENDENCIES
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
   sass-rails (>= 6)
+  sassc!
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
