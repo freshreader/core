@@ -1,0 +1,26 @@
+.flash {
+  padding: 0.5em;
+  border-radius: 0.2em;
+  background: #e8e8e8;
+  color: #575757;
+}
+
+.flash_error {
+  background: #ffb6b6;
+  color: #930d0d;
+}
+
+.flash_warning {
+  background: #fff2d9;
+  color: #6f5917;
+}
+
+.flash_notice {
+  background: #d9edff;
+  color: #415b77;
+}
+
+.flash_success {
+  background: #ace1a1;
+  color: #22662a;
+}
