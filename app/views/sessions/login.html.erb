@@ -1,0 +1,6 @@
+<h1>Login</h1>
+<%= form_tag '/login' do %>
+    <%= label_tag :account_number %>
+    <%= text_field_tag :account_number %>
+    <%= submit_tag "Login" %>
+<% end %>

@@ -4,13 +4,7 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   validates :account_number, uniqueness: true, presence: true
 
-  def self.build
-    user = new
-    user.account_number = generate_account_number
-    user.save
-  end
-
-  private_class_method def self.generate_account_number
+  def self.generate_account_number
     new_account_number = generate_16_digit_number
 
     while find_by(account_number: new_account_number)

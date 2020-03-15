@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+      <h1>You are Logged In, <%= current_user.account_number %></h1>
+      <%= button_to "Logout", '/logout', method: :post %>
+    <% else %>
+      <%= button_to "Login", '/login', method: :get %>
+      <%= button_to "Generate account", '/signup', method: :get %>
+    <% end %>
+
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
