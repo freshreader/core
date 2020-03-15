@@ -1,0 +1,15 @@
+<% if logged_in? %>
+  <p>
+    You are logged in, my friend. Your list of saved articles is available here: <%= link_to "Articles", :articles %>
+  </p>
+
+  <hr>
+<% end %>
+
+<p>hi! Freshreader is a web-based service where you can add articles to read later.</p>
+
+<p>to prevent creating a monster with thousand of to-read articles, Freshreader automatically lets go of articles you added more than 14 days ago, leaving you with only fresh content you wanted to read lately.</p>
+
+<p>embrace the freshness, and let go of old articles. you can't read everything in the world, and that's fine.</p>
+
+<p>don't worry: if it's important, it'll somehow come back into your life.</p>
