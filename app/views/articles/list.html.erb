@@ -1,11 +1,11 @@
-<ul>
-  <% @articles.each do |article| %>
-    <li><a target="_blank" href="<%= article.url %>"><%= article.url %></a> (<%= article.created_at %>)</li>
-  <% end %>
-  <li>
-    <%= form_for @new_article do |f| %>
-      <%= f.text_field :url, placeholder: 'URL to save' %>
-      <%= f.submit 'Save' %>
-    <%end%>
-  </li>
-</ul>
+<p>
+  <%= form_for @new_article do |f| %>
+    <%= f.text_field :url, placeholder: 'URL to save' %>
+    <%= f.submit 'Save' %>
+  <%end%>
+</p>
+<% @articles.each do |article| %>
+  <p>
+    <a target="_blank" href="<%= article.url %>"><%= article.url %></a><br>added <%= time_ago_in_words(article.created_at) %> ago
+  </p>
+<% end %>
