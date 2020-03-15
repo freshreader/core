@@ -1,6 +1,12 @@
-name: Test
+name: Rails Tests
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - 'master'
+  push:
+    branches:
+      - 'master'
 
 jobs:
   build:
@@ -8,51 +14,37 @@ jobs:
 
     services:
       postgres:
-        image: postgres:11.6-alpine
-        env:
-          POSTGRES_PASSWORD: password
-        ports:
-          - 5432:5432
-        # needed because the postgres container does not provide a healthcheck
+        image: postgres:11.5
+        ports: ["5432:5432"]
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install Ruby version specified in `.ruby-version`
-        uses: eregon/use-ruby-action@master # this will use by default the .ruby-version file in your repository
-      - name: Install required apt packages
-        run: |
-          sudo apt-get -y install libpq-dev
-      - name: Setup cache key and directory for gems cache
-        uses: actions/cache@v1
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-use-ruby-${{ hashFiles('**/Gemfile.lock') }}
-      - name: Read Node.js version to install from `.nvmrc`
-        run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
-        id: nvm
-      - name: Install required Node.js version
-        uses: actions/setup-node@v1
-        with:
-          node-version: "${{ steps.nvm.outputs.NVMRC }}"
-      - name: Get Yarn cache directory path
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Setup cache key and directory for node_modules cache
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      - name: Bundle install
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-      - name: Yarn install
-        run: yarn --frozen-lockfile
-      - name: Rails test
-        env: # Or as an environment variable
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-        run: |
-          bundle exec rails db:setup
-          bundle exec rails test
+    - uses: actions/checkout@v1
+
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+
+    - name: Install PostgreSQL 11 client
+      run: |
+        sudo apt-get -yqq install libpq-dev
+
+    - name: Build App
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bin/rails db:setup
+
+    - name: Run Tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        bundle exec rake test
+        bundle exec rake test:system
