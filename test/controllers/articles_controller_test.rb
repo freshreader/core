@@ -46,4 +46,21 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to(:articles)
     end
   end
+
+  def test_delete_existing_article_succeeds
+    user = User.new(account_number: '1234123412341234')
+    user.save
+    post(login_url, params: { account_number: user.account_number })
+
+    inserted_article = assert_difference('Article.count', 1) do
+      post(articles_url, params: { article: { url: 'https://example.com/' } })
+      assert_redirected_to(:articles)
+      Article.last
+    end
+
+    assert_difference('Article.count', -1) do
+      delete(article_url(inserted_article))
+      assert_redirected_to(:articles)
+    end
+  end
 end

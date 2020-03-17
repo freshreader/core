@@ -23,4 +23,14 @@ class ArticlesController < ApplicationController
     flash[:error] = 'There was an issue saving this URL.'
     redirect_to :articles
   end
+
+  def destroy
+    @article = Article.find(params[:id])
+    if @article.destroy
+      flash[:success] = 'Article marked as read'
+    else
+      flash[:error] = 'There was an issue marking this article as read.'
+    end
+    redirect_to :articles
+  end
 end
