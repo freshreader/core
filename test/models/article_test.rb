@@ -27,4 +27,29 @@ class ArticleTest < ActiveSupport::TestCase
     refute article.valid?
     assert_equal ['must exist'], article.errors[:user]
   end
+
+  test 'article is valid with title' do
+    article = Article.new(url: 'https://freshreader.app/', title: 'Freshreader', user: @user)
+    assert article.valid?
+  end
+
+  test 'article is valid with nil title' do
+    article = Article.new(url: 'https://freshreader.app/', title: nil, user: @user)
+    assert article.valid?
+  end
+
+  test 'article is valid with empty title' do
+    article = Article.new(url: 'https://freshreader.app/', title: '', user: @user)
+    assert article.valid?
+  end
+
+  test '.title_from_response_body parses non-utf8 characters' do
+    expected = '«Nous devons agir maintenant», dit Theresa Tam'
+    actual = Article.title_from_response_body("<title>\xC2\xABNous devons agir maintenant\xC2\xBB, dit Theresa Tam</title>")
+    assert_equal expected, actual
+
+    expected = 'Why I still use a ThinkPad X220 in 2019 — Maxime Vaillancourt'
+    actual = Article.title_from_response_body("<title>\n    \n      Why I still use a ThinkPad X220 in 2019 &mdash; Maxime Vaillancourt\n    \n  </title>")
+    assert_equal expected, actual
+  end
 end
