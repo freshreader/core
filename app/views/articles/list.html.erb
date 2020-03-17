@@ -8,5 +8,6 @@
   <p>
     <a target="_blank" href="<%= article.url %>"><%= article.title || article.url %></a> (<%= URI.parse(article.url).host %>)<br>
     added <%= time_ago_in_words(article.created_at) %> ago<br>
+    <%= link_to 'Mark as read', article, method: :delete %>
   </p>
 <% end %>
