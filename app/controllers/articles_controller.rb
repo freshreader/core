@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
 
   def create
     url = params.dig(:article, :url)&.strip
-    title = Article.title_from_url(url)
+    title = RequestHelper.extract_title_from_page(url)
 
     new_article = Article.new(user: current_user, url: url, title: title)
 
