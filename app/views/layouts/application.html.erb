@@ -7,32 +7,43 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+		<link href="https://fonts.googleapis.com/css?family=Inter:400,700|Roboto+Mono&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <div class="flex">
-      <div class="flex-1">
-        <a href="<% if logged_in? %>/articles<% else %>/<% end %>">
-          <span>Freshreader</span>
-        </a>
+    <div class="nav">
+      <div class="wrapper">
+        <div class="flex">
+          <div class="flex-1">
+            <a class="internal-link" href="<% if logged_in? %>/articles<% else %>/<% end %>">
+              <span class="nav-title">Freshreader</span>
+            </a>
+          </div>
+          <p>
+            <% if logged_in? %>
+              <%= content_tag :div, current_user.account_number, class: 'account-number' %>
+              <%= link_to "Logout", '/logout', method: :post, class: "internal-link logout-btn" %>
+            <% else %>
+              <%= link_to "Login", '/login', method: :get, class: "internal-link" %>
+              <%= link_to "Generate account", '/signup', method: :get, class: "internal-link" %>
+            <% end %>
+          </p>
+        </div>
       </div>
-      <p>
-        <% if logged_in? %>
-          <%= current_user.account_number %>
-          <%= link_to "Logout", '/logout', method: :post %>
-        <% else %>
-          <%= link_to "Login", '/login', method: :get %>
-          <%= link_to "Generate account", '/signup', method: :get %>
-        <% end %>
-      </p>
     </div>
 
     <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}", class: "flash flash_#{name}" %>
+      <div class="flash flash_<%= name %>">
+        <div class="wrapper">
+          <%= msg %>
+        </div>
+      </div>
     <% end %>
 
-    <%= yield %>
+    <div class="wrapper">
+      <%= yield %>
+    </div>
   </body>
 </html>
