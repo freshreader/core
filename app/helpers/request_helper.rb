@@ -2,7 +2,10 @@ module RequestHelper
   extend self
 
   def extract_title_from_page(url)
-    body = fetch(url).body
+    title_from_response_body(fetch(url).body)
+  end
+
+  def self.title_from_response_body(body)
     title = body&.match(/<title.*>(.*)<\/title>/m)&.[](1)&.strip&.force_encoding('UTF-8')
     HTMLEntities.new.decode(title) if title
   end
