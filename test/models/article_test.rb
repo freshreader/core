@@ -51,5 +51,9 @@ class ArticleTest < ActiveSupport::TestCase
     expected = 'Why I still use a ThinkPad X220 in 2019 — Maxime Vaillancourt'
     actual = Article.title_from_response_body("<title>\n    \n      Why I still use a ThinkPad X220 in 2019 &mdash; Maxime Vaillancourt\n    \n  </title>")
     assert_equal expected, actual
+
+    expected = 'Foobar'
+    actual = Article.title_from_response_body("<title data-enabled=\"true\">Foobar</title>")
+    assert_equal expected, actual
   end
 end
