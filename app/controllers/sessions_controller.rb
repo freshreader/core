@@ -2,6 +2,8 @@ class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
   def new
+    return redirect_to :articles if logged_in?
+
     @user = User.new
     render :login
   end

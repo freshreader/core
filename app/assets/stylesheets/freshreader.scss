@@ -1,10 +1,75 @@
+$color-primary: #1a2146;
+$color-secondary: lighten($color-primary, 70);
+
+$color-text: #333333;
+$color-text-light: lighten($color-text, 30);
+
+$border-color: #dddddd;
+
+$focus-color: #ffe8bc;
+$hover-color: #fffaf1;
+
 body {
+  color: $color-text;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  line-height: 1.6;
+}
+
+.wrapper {
+  max-width: 50em;
+  margin: 0 auto;
   padding: 0 1em;
   margin: 0 auto;
-  max-width: 50em;
-  color: #606c76;
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
-  line-height: 1.6;
+}
+
+.nav {
+  padding: 0.5em 0;
+  background: $color-primary;
+  color: white;
+  a {
+    color: white;
+  }
+}
+
+.nav-title {
+  font-weight: bold;
+}
+
+.account-number {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.8em;
+  margin: 0 0.8em;
+  margin-top: -0.15em;
+}
+
+.logout-btn {
+  font-size: 0.8em;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid $border-color;
+  color: $color-primary;
+  &:hover {
+    color: black !important;
+    background: $hover-color;
+  }
+  &:after {
+    position: relative;
+    top: -0.5em;
+    font-size: 0.7em;
+    content: "↗";
+    color: #aaaaaa;
+  }
+  &.internal-link:after {
+    content: "";
+  }
+}
+
+*:focus {
+  background: $focus-color !important;
+  color: black !important;
 }
 
 .flex {
@@ -14,4 +79,45 @@ body {
 
 .flex-1 {
   flex: 1;
+}
+
+input[type="text"] {
+  border: 1px solid $border-color;
+  padding: 0.5em;
+  margin: 0 -1px 0 0;
+}
+
+button,
+input[type="submit"] {
+  font-weight: bold;
+  background: $color-primary;
+  border: 1px solid $color-primary;
+  color: white;
+  padding: 0.5em;
+  margin: 0;
+  cursor: pointer;
+}
+
+.article-title {
+  font-weight: bold;
+}
+
+.check {
+  text-decoration: none;
+  border: none;
+  font-size: 1.2em;
+  padding: 0.4em;
+  font-weight: bold;
+  background: $color-secondary;
+  border-radius: 3px;
+  margin-right: 0.5em;
+}
+
+.article {
+  margin-bottom: 1em;
+}
+
+.article-timestamp {
+  font-size: 0.8em;
+  color: $color-text-light;
 }

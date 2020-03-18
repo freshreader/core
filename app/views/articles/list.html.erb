@@ -1,13 +1,19 @@
 <p>
   <%= form_for @new_article do |f| %>
-    <%= f.text_field :url, placeholder: 'URL to save' %>
-    <%= f.submit 'Save' %>
+    <div class="flex">
+      <%= f.text_field :url, placeholder: 'URL to save', class: 'flex-1' %>
+      <%= f.submit 'Save' %>
+    </div>
   <%end%>
 </p>
 <% @articles.each do |article| %>
-  <p>
-    <a target="_blank" href="<%= article.url %>"><%= article.title || article.url %></a> (<%= URI.parse(article.url).host %>)<br>
-    added <%= time_ago_in_words(article.created_at) %> ago<br>
-    <%= link_to 'Mark as read', article, method: :delete %>
-  </p>
+  <div class="article flex">
+    <div>
+      <%= link_to '✓', article, method: :delete, class: 'check internal-link' %>
+    </div>
+    <div class="flex-1">
+      <div><a class="article-title" target="_blank" href="<%= article.url %>"><%= article.title || article.url %></a> (<%= URI.parse(article.url).host %>)</div>
+      <div class="article-timestamp">added <%= time_ago_in_words(article.created_at) %> ago</div>
+    </div>
+  </div>
 <% end %>
