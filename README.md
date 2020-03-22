@@ -32,11 +32,11 @@ At the time of writing this, the following dependencies are recommended:
 
 You're free to deploy the application wherever/however you see fit. https://freshreader.app/ is deployed on Heroku.
 
-# Contributing
+## Contributing
 
 For bug fixes, documentation changes, and small features:  
 
-1. [Fork it](https://github.com/maximevaillancourt/trace/fork)
+1. [Fork it](https://github.com/maximevaillancourt/freshreader/fork)
 2. Create your feature branch (`git checkout -b my-new-feature`)  
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)  
