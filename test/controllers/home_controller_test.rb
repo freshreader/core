@@ -2,8 +2,8 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
   def test_logged_out_home
     get('/')
 
-    assert_includes(response.body, 'hi! Freshreader is a web-based service where you can add articles to read later.')
-    refute_includes(response.body, 'You are logged in, my friend. Your list of saved articles is available here:')
+    assert_includes(response.body, 'Log in')
+    refute_includes(response.body, 'View list')
     assert_response(:success)
   end
 
@@ -14,8 +14,8 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
     get('/')
 
-    assert_includes(response.body, 'hi! Freshreader is a web-based service where you can add articles to read later.')
-    assert_includes(response.body, 'You are logged in, my friend. Your list of saved articles is available here:')
+    assert_includes(response.body, 'View list')
+    refute_includes(response.body, 'Log in')
     assert_response(:success)
   end
 end

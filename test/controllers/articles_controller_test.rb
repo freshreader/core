@@ -11,7 +11,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
     get(articles_url)
     assert_response(:success)
-    assert_includes(response.body, 'URL to save')
+    assert_includes(response.body, 'Save new URL')
   end
 
   def test_save_invalid_url_redirects_to_articles
