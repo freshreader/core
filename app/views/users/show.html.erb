@@ -12,11 +12,24 @@
     That's right. No username, no password. Simple as that.
   </p>
 
-  <p>
-    <b>Now, let's save and read cool things from around the Web!</b>
+  <hr>
+
+  <h2>How to save content</h2>
+
+  <ul>
+    <li>
+      Using the bookmarklet—drag this link to your bookmarks bar: <a style="font-weight: bold" onclick="return false;" class="internal-link" href="javascript:location.href='https://freshreader.app/save?url='+encodeURIComponent(location.href)">Save to Freshreader</a>
+    </li>
+  </ul>
+
+  <p style="color: gray;">
+    (more ways to save coming soon: browser extension and mobile app)
   </p>
 
-  <%= link_to "View saved articles", '/articles', class: "btn btn-large internal-link" %>
+  <p>
+    Now that you know how to save content, let's open your reading list:
+    <%= link_to "View saved items", '/articles', class: "internal-link", style: "font-weight: bold;" %>
+  </p>
 
   <hr>
 

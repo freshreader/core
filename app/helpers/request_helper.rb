@@ -6,7 +6,7 @@ module RequestHelper
   end
 
   def self.title_from_response_body(body)
-    title = body&.match(/<title.*>(.*)<\/title>/m)&.[](1)&.strip&.force_encoding('UTF-8')
+    title = body&.match(/<title.*?>(.*?)<\/title>/m)&.[](1)&.strip&.force_encoding('UTF-8')
     HTMLEntities.new.decode(title) if title
   end
 

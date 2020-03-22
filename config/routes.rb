@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :articles
 
+  get '/save', to: 'articles#bookmarklet'
+
   get '/', to: 'home#show', as: :index
 
   get 'login', to: 'sessions#new'
