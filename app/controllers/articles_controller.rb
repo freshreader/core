@@ -7,6 +7,23 @@ class ArticlesController < ApplicationController
     render :list
   end
 
+  def bookmarklet
+    url = params[:url]&.strip
+    title = RequestHelper.extract_title_from_page(url)
+
+    new_article = Article.new(user: current_user, url: url, title: title)
+
+    if new_article.save
+      flash[:success] = 'Saved successfully.'
+    else
+      flash[:error] = new_article.errors.full_messages.to_sentence
+    end
+    redirect_to :articles
+  rescue
+    flash[:error] = 'There was an issue saving this URL.'
+    redirect_to :articles
+  end
+
   def create
     url = params.dig(:article, :url)&.strip
     title = RequestHelper.extract_title_from_page(url)
