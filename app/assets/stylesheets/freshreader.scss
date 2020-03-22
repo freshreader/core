@@ -68,10 +68,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 4vh;
 }
 
-.nav-title {
-  font-weight: 900;
-}
-
 .account-number {
   font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   font-size: 1.2em;
@@ -244,9 +240,13 @@ footer {
   width: 100%;
 }
 
-
-
 .lead {
   font-size: 1.3em;
   margin: 0;
+}
+
+#nav-logo {
+  width: 1.4em;
+  position: relative;
+  top: 0.3em;
 }
