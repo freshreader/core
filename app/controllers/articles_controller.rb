@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     new_article = Article.new(user: current_user, url: url, title: title)
 
     if new_article.save
-      flash[:success] = 'URL saved'
+      flash[:success] = 'Saved successfully.'
     else
       flash[:error] = new_article.errors.full_messages.to_sentence
     end
@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     if @article.destroy
-      flash[:success] = 'Article marked as read'
+      flash[:success] = 'Marked as read successfully.'
     else
       flash[:error] = 'There was an issue marking this article as read.'
     end

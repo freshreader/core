@@ -13,37 +13,45 @@
   </head>
 
   <body>
-    <div class="nav">
-      <div class="wrapper">
-        <div class="flex">
-          <div class="flex-1">
-            <a class="internal-link" href="<% if logged_in? %>/articles<% else %>/<% end %>">
-              <span class="nav-title">Freshreader</span>
-            </a>
+    <div id="main-container">
+      <div class="nav">
+        <div class="">
+          <div class="flex">
+            <div class="flex-1">
+              <a class="internal-link" href="<% if logged_in? %>/articles<% else %>/<% end %>">
+                <span class="nav-title">Freshreader</span>
+              </a>
+            </div>
+            <p>
+              <% if logged_in? %>
+                <%= link_to "View list", '/articles', class: "internal-link nav-link" %>
+                <%= link_to "View account", '/account', class: "internal-link nav-link" %>
+                <%= link_to "Log out", '/logout', method: :post, class: "internal-link nav-link" %>
+              <% else %>
+                <%= link_to "Log in", '/login', method: :get, class: "internal-link" %>
+              <% end %>
+            </p>
           </div>
-          <p>
-            <% if logged_in? %>
-              <%= content_tag :div, current_user.account_number, class: 'account-number' %>
-              <%= link_to "Logout", '/logout', method: :post, class: "internal-link logout-btn" %>
-            <% else %>
-              <%= link_to "Login", '/login', method: :get, class: "internal-link" %>
-              <%= link_to "Generate account", '/signup', method: :get, class: "internal-link" %>
-            <% end %>
-          </p>
         </div>
       </div>
-    </div>
 
-    <% flash.each do |name, msg| %>
-      <div class="flash flash_<%= name %>">
-        <div class="wrapper">
-          <%= msg %>
-        </div>
+      <div class="wrapper" id="flashes-wrapper">
+        <% flash.each do |name, msg| %>
+          <div class="flash flash_<%= name %>">
+            <%= msg %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
 
-    <div class="wrapper">
-      <%= yield %>
+      <div>
+        <%= yield %>
+      </div>
+
+      <footer>
+        <div class="">
+          Built by <a target="_blank" href="https://maximevaillancourt.com/">Maxime Vaillancourt</a> in Montreal, Canada ✌️
+        </div>
+      </footer>
     </div>
   </body>
 </html>

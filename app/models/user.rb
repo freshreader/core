@@ -5,6 +5,10 @@ class User < ApplicationRecord
   validates :account_number, uniqueness: true, presence: true
   validates_format_of :account_number, :with => /\A\d{16}\z/
 
+  def pretty_account_number
+    account_number.chars.each_slice(4).map(&:join).join(' ')
+  end
+
   def self.generate_account_number
     new_account_number = generate_16_digit_number
 

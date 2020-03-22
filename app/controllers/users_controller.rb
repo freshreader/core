@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
-  def new
+  def show
+    @user = current_user
   end
 
   def create
@@ -9,10 +10,21 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to :articles
+      flash[:success] = "Account created successfully."
+      redirect_to :account
     else
       flash[:error] = @user.errors.full_messages.to_sentence
       redirect_to :login
     end
+  end
+
+  def destroy
+    user = current_user
+    if user.destroy
+      flash[:success] = 'Account deleted successfully.'
+    else
+      flash[:error] = 'There was an issue deleting your account.'
+    end
+    redirect_to :index
   end
 end

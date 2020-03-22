@@ -1,0 +1,30 @@
+<div class='wrapper'>
+  <h1>Your account</h1>
+  <p>
+    This is your account number. Use it to log in to Freshreader. Store it somewhere safe.<br>
+  </p>
+
+  <code class="account-number">
+    <%= @user.pretty_account_number %>
+  </code>
+
+  <p>
+    That's right. No username, no password. Simple as that.
+  </p>
+
+  <p>
+    <b>Now, let's save and read cool things from around the Web!</b>
+  </p>
+
+  <%= link_to "View saved articles", '/articles', class: "btn btn-large internal-link" %>
+
+  <hr>
+
+  <div>
+    <h2>Danger zone</h2>
+    <p>
+      Not interested in Freshreader anymore? That's okay, we're glad you were here for a while. Be excellent, and keep learning every day. :)
+    </p>
+    <%= button_to 'Delete account', :account, method: :delete, class: 'btn-danger internal-link', onclick: "return confirm('Are you sure you want to delete your Freshreader account?');"%>
+  </div>
+</div>

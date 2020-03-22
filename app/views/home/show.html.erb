@@ -1,15 +1,61 @@
-<% if logged_in? %>
+<div class="wrapper large-wrapper" id='above-the-fold'>
   <p>
-    You are logged in, my friend. Your list of saved articles is available here: <%= link_to "Articles", :articles %>
+    <img id="hero-image" src="<%= image_url("opened_tabs.svg") %>"/>
+    <h1>Say goodbye to that 50-tab browser window.</h1>
+    <p class="lead">
+      Save content to read later. Read what's most interesting.<br>
+      <b>Get a fresh start every week.</b>
+    </p>
   </p>
+  <% if logged_in? %>
+    <%= link_to "View saved articles", '/articles', class: "btn btn-large internal-link" %>
+  <% else %>
+    <%= link_to "Generate account", '/signup', method: :post, class: "btn btn-large btn-signup internal-link" %>
+    <%= link_to "Login", '/login', class: "btn btn-login internal-link" %>
+  <% end %>
+</div>
 
-  <hr>
-<% end %>
+<hr>
 
-<p>hi! Freshreader is a web-based service where you can add articles to read later.</p>
+<div class="wrapper">
+  <div id="home">
+    <p>
+      We get you. You're curious. You want to read and learn and explore <i>everything</i>. You spend your evenings and/or weekends catching up on what matters to you.
+    </p>
 
-<p>to prevent creating a monster with thousand of to-read articles, Freshreader automatically lets go of articles you added more than 14 days ago, leaving you with only fresh content you wanted to read lately.</p>
+    <p>
+      Cue the browser window with tabs so small you can't even read the titles anymore, the FOMO-inducing Twitter firehose, the dozen unread newsletters, and the hundred bookmarks across all your devices, thinking "I'll read this later", but actually never do.
+    </p>
 
-<p>embrace the freshness, and let go of old articles. you can't read everything in the world, and that's fine.</p>
+    <p>
+    In the face of this information overload, we sign up for "read later" services, where we dump more content than we can ever read in a lifetime, only to end up with yet <i>another</i> inbox to deal with. How annoying and draining is that?
+    </p>
 
-<p>don't worry: if it's important, it'll somehow come back into your life.</p>
+    <p>
+      Freshreader aims to offer the opposite experience. We want to be where you go to read content in a relaxed way. You don't even need to read everything, quite the opposite actually.
+    </p>
+
+    <p>
+      Find what's most relevant to you, and read it. Then, let go of the rest.
+    </p>
+
+    <p>
+      In fact, Freshreader forces you get a fresh start every week. That's right: <b>Freshreader automatically lets go of content you saved more than a week ago</b>. This way, your list doesn't grow infinitely.
+    </p>
+
+    <p>
+      There's something comforting in letting go and getting a fresh start every week. Don't worry: if it's important, it'll somehow find its way back into your life.
+    </p>
+
+    <p>
+      Sounds exciting? Let's get started.
+    </p>
+
+    <% if logged_in? %>
+      <%= link_to "View saved articles", '/articles', class: "btn internal-link" %>
+    <% else %>
+      <%= link_to "Login", '/login', class: "btn btn-login internal-link" %>
+      <%= link_to "Generate account", '/signup', method: :post, class: "btn btn-signup internal-link" %>
+    <% end %>
+  </div>
+</div>

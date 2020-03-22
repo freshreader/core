@@ -1,6 +1,10 @@
-<h1>Login</h1>
-<%= form_tag '/login' do %>
-    <%= label_tag :account_number %>
-    <%= text_field_tag :account_number %>
-    <%= submit_tag "Login" %>
-<% end %>
+<div class="wrapper">
+  <h1>Login</h1>
+  <%= form_for '/login' do |f| %>
+    <%= f.label :account_number, 'Account number', class: 'url-input-label' %>
+    <div class="flex">
+      <%= f.text_field :account_number, placeholder: '0000 0000 0000 0000', class: "flex-1" %>
+      <%= f.submit "Login", class: 'no-margin' %>
+    </div>
+  <% end %>
+</div>

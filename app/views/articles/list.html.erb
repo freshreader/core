@@ -1,19 +1,33 @@
-<p>
-  <%= form_for @new_article do |f| %>
-    <div class="flex">
-      <%= f.text_field :url, placeholder: 'URL to save', class: 'flex-1' %>
-      <%= f.submit 'Save' %>
-    </div>
-  <%end%>
-</p>
-<% @articles.each do |article| %>
-  <div class="article flex">
-    <div>
-      <%= link_to '✓', article, method: :delete, class: 'check internal-link' %>
-    </div>
-    <div class="flex-1">
-      <div><a class="article-title" target="_blank" href="<%= article.url %>"><%= article.title || article.url %></a> (<%= URI.parse(article.url).host %>)</div>
-      <div class="article-timestamp">added <%= time_ago_in_words(article.created_at) %> ago</div>
-    </div>
+<div class="wrapper">
+  <h2>Saved articles</h2>
+  <div id="url-input-wrapper">
+    <%= form_for @new_article do |f| %>
+      <%= f.label :name, 'Save new URL', class: 'url-input-label' %>
+      <div class="flex">
+        <%= f.text_field :url, id: 'url-input', placeholder: 'https://...', class: 'flex-1' %>
+        <%= f.submit 'Save', class: "btn-url-save no-margin" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  <div class="articles-wrapper">
+    <% if @articles.size > 0 %>
+      <% @articles.each do |article| %>
+        <div class="article flex">
+          <div class="flex-1">
+            <div><a class="article-title" target="_blank" href="<%= article.url %>"><%= article.title || article.url %></a></div>
+            <div class="article-timestamp">
+              <%= URI.parse(article.url).host %>
+              &middot;
+              added <%= time_ago_in_words(article.created_at) %> ago
+            </div>
+            <div class="article-timestamp">
+              <%= link_to 'Mark as read', article, method: :delete, class: 'internal-link' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      Nothing saved yet. Try saving an URL above to get started.
+    <% end %>
+  </div>
+</div>
