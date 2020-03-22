@@ -60,3 +60,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "validate_url"
 
 gem "htmlentities", "~> 4.3"
+
+gem 'rack-attack'
