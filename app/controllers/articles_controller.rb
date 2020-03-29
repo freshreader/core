@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def save_bookmarklet
-    url = params[:url]&.strip
+    url = RequestHelper.url_from_param(params[:url])
     title = RequestHelper.extract_title_from_page(url)
 
     new_article = Article.new(user: current_user, url: url, title: title)
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
       return render json: 'This user does not exist.'
     end
 
-    url = params[:url]&.strip
+    url = RequestHelper.url_from_param(params[:url])
     title = RequestHelper.extract_title_from_page(url)
     new_article = Article.new(user: user, url: url, title: title)
 
@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    url = params.dig(:article, :url)&.strip
+    url = RequestHelper.url_from_param(params.dig(:article, :url))
     title = RequestHelper.extract_title_from_page(url)
 
     new_article = Article.new(user: current_user, url: url, title: title)
