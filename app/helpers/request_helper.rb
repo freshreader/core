@@ -22,6 +22,7 @@ module RequestHelper
 
     url = URI.parse(uri_str)
     req = Net::HTTP::Get.new(url)
+    req['Accept'] = 'text/html'
     response = Net::HTTP.start(url.host, url.port, use_ssl: true) { |http| http.request(req) }
 
     case response
