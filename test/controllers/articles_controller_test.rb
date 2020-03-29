@@ -47,6 +47,43 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  def test_save_valid_url_from_bookmarklet_succeeds
+    user = User.new(account_number: '1234123412341234')
+    user.save
+    post(login_url, params: { account_number: user.account_number })
+
+    assert_difference('Article.count') do
+      get(save_bookmarklet_url, params: { url: 'https://maximevaillancourt.com/why-i-use-a-thinkpad-x220-in-2019' })
+    end
+  end
+
+  def test_save_valid_url_from_bookmarklet_without_logged_in_user_fails
+    user = User.new(account_number: '1234123412341234')
+    user.save
+
+    assert_no_difference('Article.count') do
+      get(save_bookmarklet_url, params: { url: 'https://maximevaillancourt.com/why-i-use-a-thinkpad-x220-in-2019' })
+    end
+  end
+
+  def test_save_valid_url_from_mobile_succeeds
+    user = User.new(account_number: '1234123412341234')
+    user.save
+
+    assert_difference('Article.count') do
+      get(save_mobile_url, params: { url: 'https://maximevaillancourt.com/why-i-use-a-thinkpad-x220-in-2019', account_number: '1234123412341234' })
+    end
+  end
+
+  def test_save_valid_url_from_mobile_with_invalid_user_fails
+    user = User.new(account_number: '1234123412341234')
+    user.save
+
+    assert_no_difference('Article.count') do
+      get(save_mobile_url, params: { url: 'https://maximevaillancourt.com/why-i-use-a-thinkpad-x220-in-2019', account_number: '5555' })
+    end
+  end
+
   def test_delete_existing_article_succeeds
     user = User.new(account_number: '1234123412341234')
     user.save

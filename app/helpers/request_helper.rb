@@ -5,9 +5,13 @@ module RequestHelper
     title_from_response_body(fetch(url).body)
   end
 
-  def self.title_from_response_body(body)
+  def title_from_response_body(body)
     title = body&.match(/<title.*?>(.*?)<\/title>/m)&.[](1)&.strip&.force_encoding('UTF-8')
     HTMLEntities.new.decode(title) if title
+  end
+
+  def url_from_param(param_value)
+    URI.decode(param_value.strip)
   end
 
   private
