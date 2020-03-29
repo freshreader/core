@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  skip_before_action :authorized, only: [:save_mobile]
+
   def index
     @articles = Article.where(user: current_user).sort_by(&:created_at).reverse
 
