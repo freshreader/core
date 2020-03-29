@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
 
   def save_mobile
     unless user = User.find_by(account_number: params[:account_number].delete(' '))
-      return render json: 'This user does not exist.'
+      return render json: 'This user does not exist.', status: :unauthorized
     end
 
     url = RequestHelper.url_from_param(params[:url])
@@ -38,10 +38,10 @@ class ArticlesController < ApplicationController
     if new_article.save
       head :ok
     else
-      render json: new_article.errors.full_messages.to_sentence
+      render json: { error: new_article.errors.full_messages.to_sentence }, status: :internal_server_error
     end
   rescue
-    render json: { error: 'There was an issue saving this URL.' }
+    render json: { error: 'There was an issue saving this URL.' }, status: :internal_server_error
   end
 
   def create

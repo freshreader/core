@@ -63,6 +63,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
     assert_no_difference('Article.count') do
       get(save_bookmarklet_url, params: { url: 'https://maximevaillancourt.com/why-i-use-a-thinkpad-x220-in-2019' })
+      assert_equal 302, response.status
     end
   end
 
@@ -72,6 +73,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference('Article.count') do
       get(save_mobile_url, params: { url: 'https://maximevaillancourt.com/why-i-use-a-thinkpad-x220-in-2019', account_number: '1234123412341234' })
+      assert_equal 200, response.status
     end
   end
 
@@ -81,6 +83,17 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
     assert_no_difference('Article.count') do
       get(save_mobile_url, params: { url: 'https://maximevaillancourt.com/why-i-use-a-thinkpad-x220-in-2019', account_number: '5555' })
+      assert_equal 401, response.status
+    end
+  end
+
+  def test_save_valid_url_from_mobile_with_invalid_url_fails
+    user = User.new(account_number: '1234123412341234')
+    user.save
+
+    assert_no_difference('Article.count') do
+      get(save_mobile_url, params: { url: 'not-a-valid-url', account_number: '1234123412341234' })
+      assert_equal 500, response.status
     end
   end
 
