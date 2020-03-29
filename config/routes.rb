@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :articles
 
-  get '/save', to: 'articles#bookmarklet'
+  get '/save', to: 'articles#save_bookmarklet'
+  get '/save-mobile', to: 'articles#save_mobile'
 
   get '/', to: 'home#show', as: :index
 
