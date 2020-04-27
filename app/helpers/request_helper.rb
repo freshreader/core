@@ -20,7 +20,7 @@ module RequestHelper
     # Too many HTTP redirects, abandoning
     return '' if limit == 0
 
-    url = URI.parse(uri_str)
+    url = URI.parse(URI.escape(uri_str))
     req = Net::HTTP::Get.new(url)
     req['Accept'] = 'text/html'
     response = Net::HTTP.start(url.host, url.port, use_ssl: true) { |http| http.request(req) }

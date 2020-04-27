@@ -16,7 +16,7 @@
           <div class="flex-1">
             <div><a class="article-title" target="_blank" href="<%= article.url %>"><%= article.title || article.url %></a></div>
             <div class="article-timestamp">
-              <%= URI.parse(article.url).host %>
+              <%= URI.parse(URI.escape(article.url)).host %>
               &middot;
               added <%= time_ago_in_words(article.created_at) %> ago
             </div>

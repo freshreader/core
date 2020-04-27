@@ -24,4 +24,10 @@ class RequestHelperTest < ActiveSupport::TestCase
     actual = RequestHelper.url_from_param('https://google.com')
     assert_equal expected, actual
   end
+
+  test '.url_from_param decodes non-ASCII URIs' do
+    expected = "https://www.nexojornal.com.br/expresso/2020/04/09/A-confissão-da-Ecovias-sobre-contratos-com-o-governo-paulista"
+    actual = RequestHelper.url_from_param('https://www.nexojornal.com.br/expresso/2020/04/09/A-confiss%C3%A3o-da-Ecovias-sobre-contratos-com-o-governo-paulista')
+    assert_equal expected, actual
+  end
 end
