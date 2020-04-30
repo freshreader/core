@@ -56,8 +56,8 @@ class ArticlesController < ApplicationController
       flash[:error] = new_article.errors.full_messages.to_sentence
     end
     redirect_to :articles
-  rescue
-    flash[:error] = 'There was an issue saving this URL.'
+  rescue => e
+    flash[:error] = "There was an issue saving this URL: #{e}."
     redirect_to :articles
   end
 
