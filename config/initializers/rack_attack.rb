@@ -60,6 +60,12 @@ class Rack::Attack
     end
   end
 
+  throttle("api/v1/users", limit: 5, period: 60.seconds) do |req|
+    if req.path.include?('/api/v1/users')
+      req.ip
+    end
+  end
+
   ### Custom Throttle Response ###
 
   # By default, Rack::Attack returns an HTTP 429 for throttled responses,

@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # API routes
+  namespace :api do
+    namespace :v1 do
+      # Articles
+      get '/articles', to: 'articles#index'
+      post '/articles', to: 'articles#create'
+      delete '/articles/:id', to: 'articles#destroy'
+
+      # Users
+      get '/users/:account_number', to: 'users#show'
+      post '/users', to: 'users#create'
+      delete '/users', to: 'users#destroy'
+    end
+  end
+
+  # Legacy routes
+
   resources :articles
 
   get '/save', to: 'articles#save_bookmarklet', as: :save_bookmarklet
