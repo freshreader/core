@@ -14,6 +14,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal({}, JSON.parse(response.body))
   end
 
+  def test_get_existing_user_with_spaces_in_account_number
+    user = create_user('1111222233334444')
+    credentials = authenticate(user.api_auth_token, user.account_number)
+
+    get "/api/v1/users/1111%202222%203333%204444"
+    assert_response(:success)
+    user_json = JSON.parse(response.body)
+    assert_equal(user.account_number, user_json['account_number'])
+  end
+
   def test_get_existing_user
     get "/api/v1/users/#{@user.account_number}"
     assert_response(:success)
@@ -61,9 +71,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     ActionController::HttpAuthentication::Token.encode_credentials(token, account_number: account_number)
   end
 
-  def create_user
+  def create_user(account_number = '1234123412341234')
     user = User.new(
-      account_number: '1234123412341234',
+      account_number: account_number,
       api_auth_token: '12345',
       api_auth_token_expires_at: Time.now + 10.minute
     )

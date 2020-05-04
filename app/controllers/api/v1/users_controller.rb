@@ -2,7 +2,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   skip_before_action :authenticate, only: [:show, :create]
 
   def show
-    user = User.find_by(account_number: params[:account_number])
+    user = User.find_by(account_number: params[:account_number].delete(' '))
 
     if user
       user.regenerate_api_auth_token_if_expired!
