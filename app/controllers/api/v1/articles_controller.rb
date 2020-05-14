@@ -7,9 +7,9 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   def create
     ActiveRecord::Base.transaction do
       url = RequestHelper.url_from_param(params[:url])
-      title = RequestHelper.extract_title_from_page(url)
+      title, fetched_url = RequestHelper.extract_title_from_page(url)
 
-      new_article = Article.new(user: current_user, url: url, title: title)
+      new_article = Article.new(user: current_user, url: fetched_url, title: title)
 
       if new_article.save
         render json: new_article, status: :created
