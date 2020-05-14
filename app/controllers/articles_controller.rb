@@ -11,9 +11,9 @@ class ArticlesController < ApplicationController
 
   def save_bookmarklet
     url = RequestHelper.url_from_param(params[:url])
-    title = RequestHelper.extract_title_from_page(url)
+    title, fetched_url = RequestHelper.extract_title_from_page(url)
 
-    new_article = Article.new(user: current_user, url: url, title: title)
+    new_article = Article.new(user: current_user, url: fetched_url, title: title)
 
     if new_article.save
       flash[:success] = 'Saved successfully.'
@@ -32,8 +32,8 @@ class ArticlesController < ApplicationController
     end
 
     url = RequestHelper.url_from_param(params[:url])
-    title = RequestHelper.extract_title_from_page(url)
-    new_article = Article.new(user: user, url: url, title: title)
+    title, fetched_url = RequestHelper.extract_title_from_page(url)
+    new_article = Article.new(user: user, url: fetched_url, title: title)
 
     if new_article.save
       head :ok
@@ -46,9 +46,9 @@ class ArticlesController < ApplicationController
 
   def create
     url = RequestHelper.url_from_param(params.dig(:article, :url))
-    title = RequestHelper.extract_title_from_page(url)
+    title, fetched_url = RequestHelper.extract_title_from_page(url)
 
-    new_article = Article.new(user: current_user, url: url, title: title)
+    new_article = Article.new(user: current_user, url: fetched_url, title: title)
 
     if new_article.save
       flash[:success] = 'Saved successfully.'
@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
     end
     redirect_to :articles
   rescue => e
-    flash[:error] = "There was an issue saving this URL: #{e}."
+    flash[:error] = "There was an issue saving this URL. Please try again."
     redirect_to :articles
   end
 

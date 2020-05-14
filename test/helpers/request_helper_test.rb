@@ -30,4 +30,24 @@ class RequestHelperTest < ActiveSupport::TestCase
     actual = RequestHelper.url_from_param('https://www.nexojornal.com.br/expresso/2020/04/09/A-confiss%C3%A3o-da-Ecovias-sobre-contratos-com-o-governo-paulista')
     assert_equal expected, actual
   end
+
+  test '.extract_title_from_page uses https if possible' do
+    expected_title = "Vous Etes Perdu ?"
+    expected_uri = "https://perdu.com/"
+
+    actual_title, actual_uri = RequestHelper.extract_title_from_page('http://perdu.com/')
+
+    assert_equal expected_title, actual_title
+    assert_equal expected_uri, actual_uri.to_s
+  end
+
+  test '.extract_title_from_page falls back to http if necessary' do
+    expected_title = "NeverSSL - Connecting ..."
+    expected_uri = "http://neverssl.com/"
+
+    actual_title, actual_uri = RequestHelper.extract_title_from_page('http://neverssl.com/')
+
+    assert_equal expected_title, actual_title
+    assert_equal expected_uri, actual_uri.to_s
+  end
 end
