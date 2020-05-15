@@ -1,5 +1,5 @@
-class HomeControllerTest < ActionDispatch::IntegrationTest
-  def test_logged_out_home
+class PagesControllerTest < ActionDispatch::IntegrationTest
+  def test_logged_out_index
     get('/')
 
     assert_includes(response.body, 'Log in')
@@ -7,7 +7,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  def test_logged_in_home
+  def test_logged_in_index
     user = User.new(account_number: '1234123412341234')
     user.save
     post(login_url, params: { account_number: user.account_number })
@@ -16,6 +16,12 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
     assert_includes(response.body, 'View list')
     refute_includes(response.body, 'Log in')
+    assert_response(:success)
+  end
+
+  def test_privacy_page
+    get('/privacy')
+    assert_includes(response.body, 'A few words on privacy')
     assert_response(:success)
   end
 end

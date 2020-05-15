@@ -214,6 +214,7 @@ input[type="submit"] {
 
 #home {
   max-width: 36em;
+  margin: 0 auto;
   margin-top: 5vw;
 }
 
@@ -249,4 +250,9 @@ footer {
   width: 1.4em;
   position: relative;
   top: 0.3em;
+}
+
+code {
+  padding: 0.2em;
+  background: #f8f8f8;
 }
