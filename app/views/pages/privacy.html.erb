@@ -1,0 +1,90 @@
+<div class="wrapper">
+  <h1>A few words on privacy 🍃</h1>
+    <h2>TL;DR</h2>
+    <p>Put simply, Freshreader stores your random 16-digit account number and the list of URLs you saved, which are deleted automatically 7 days after being saved (<a href="https://github.com/freshreader/core/blob/f20e65502eeac73bdb4aaeb24ab7680a1f898596/lib/tasks/delete_old_articles.rake" target="_blank">for real!</a>). When you delete your account, it is immediately deleted from the database along with your remaining saved URLs (again, <a href="https://github.com/freshreader/core/blob/f20e65502eeac73bdb4aaeb24ab7680a1f898596/app/controllers/users_controller.rb#L23" target="_blank">for real!</a>).<p>
+
+    <hr>
+
+    <h2>A non-technical overview</h2>
+    <p>
+      Hi, I'm <a href="https://maximevaillancourt.com" target="_blank">Maxime</a>. I made Freshreader. I'm a performance- and privacy-conscious software developer, and in an age where privacy-greedy applications are commonplace, I aim to build software that requires as little information as necessary from the people using it to function properly.
+    </p>
+
+    <p>
+      I don't need your email address, nor your name or even an arbitrary username, nor a picture of you, nor your location, or anything of that matter for Freshreader to do its job, so I simply don't ask for it. I think it's better for everyone this way: you don't have to worry about what I'm doing with this information, and I don't have to worry about mishandling your personal information.
+    </p>
+
+    <p>
+      Sure, the application may feel a bit "dry" because it's not particularly "personalized to your taste", but I think that's an acceptable downside considering the privacy win for everyone.
+    </p>
+
+    <p>
+      Feedback is always welcome, either on <a href="https://github.com/freshreader/core/issues/" target="_blank">GitHub</a> or <a href="https://twitter.com/freshreaderapp" target="_blank">Twitter</a>. ✌️
+    </p>
+
+    <hr>
+
+    <h2>The techy bits</h2>
+    <p>
+      Freshreader is a really simple Rails-based web application backed by only 2 database tables: <code>users</code> and <code>articles</code>. Here's a short explanation of the <a href="https://github.com/freshreader/core/blob/f20e65502eeac73bdb4aaeb24ab7680a1f898596/db/schema.rb" target="_blank">database schema as of 2020-05-03</a>:
+
+    <h3><code>articles</code> table</h3>
+    <ul>
+      <li>
+        <code>id</code>: the internal unique identifier of your saved article
+      </li>
+      <li>
+        <code>url</code>: the URL of the page you saved
+      </li>
+      <li>
+        <code>title</code>: the title of the page when you saved it
+      </li>
+      <li>
+        <code>created_at</code>: the time & date at which you saved the page
+      </li>
+      <li>
+        <code>updated_at</code>: the time & date at which the record is updated (not used)
+      </li>
+      <li>
+        <code>user_id</code>: the internal identifier for your Freshreader account
+      </li>
+    </ul>
+
+    <h3><code>users</code> table</h3>
+    <ul>
+      <li>
+        <code>id</code>: the internal unique identifier of your Freshreader account
+      </li>
+      <li>
+        <code>account_number</code>: your random and unique 16-digit account number
+      </li>
+      <li>
+        <code>title</code>: the title of the page when you saved it
+      </li>
+      <li>
+        <code>created_at</code>: the time & date at which you created your account
+      </li>
+      <li>
+        <code>updated_at</code>: the time & date at which you last updated your account
+      </li>
+      <li>
+        <code>api_auth_token</code>: a random token generated for use with the upcoming Android app
+      </li>
+      <li>
+        <code>api_auth_token_expires_at</code>: the expiration time & date of the API token
+      </li>
+    </ul>
+
+    <p>
+      As for cookies, Freshreader uses a single cookie named <code>_freshreader_session</code> to keep your Freshreader session active (otherwise you'd have to type in your account number every time you'd want to see your list, or save an article). This cookie is only used on the <code>freshreader.app</code> domain, and expires when you close your browser. I don't track you across other websites, because I think that's wrong, and because Freshreader doesn't need this to work.
+    </p>
+
+    <hr>
+
+    <p>
+      In a way, this application is a bit naive, and that's how I want it to be. No shadow profiles, no "soft-deleted" records, no shady practices. Just clear intentions and <a href="https://github.com/freshreader/" target="_blank">open source implementation</a>.
+    <p>
+    </p>
+      I hope Freshreader is adding value to your life. I'm always available to chat on <a href="https://twitter.com/maximevaillancourt" target="_blank">Twitter</a>, and feedback is welcome on <a href="https://github.com/freshreader/core/issues/" target="_blank">GitHub</a>. 👋
+    </p>
+</div>

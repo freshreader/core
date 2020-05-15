@@ -14,14 +14,13 @@ Rails.application.routes.draw do
     end
   end
 
-  # Legacy routes
-
   resources :articles
 
   get '/save', to: 'articles#save_bookmarklet', as: :save_bookmarklet
   get '/save-mobile', to: 'articles#save_mobile', as: :save_mobile
 
-  get '/', to: 'home#show', as: :index
+  get '/', to: 'pages#index', as: :index
+  get 'privacy', to: 'pages#privacy'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -31,4 +30,6 @@ Rails.application.routes.draw do
 
   get 'account', to: 'users#show'
   delete 'account', to: 'users#destroy'
+
+  get 'account', to: 'users#show'
 end
