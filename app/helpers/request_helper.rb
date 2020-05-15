@@ -48,7 +48,15 @@ module RequestHelper
 
     case response
     when Net::HTTPOK then response
-    when Net::HTTPRedirection then do_fetch(response['location'], limit: limit - 1)
+    when Net::HTTPRedirection then
+      location_header_value = response['location']
+      redirect_url = if location_header_value.start_with?('/')
+        "#{use_ssl ? 'https://' : 'http://'}#{url.host}#{location_header_value}"
+      else
+        location_header_value
+      end
+
+      do_fetch(redirect_url, limit: limit - 1)
     else
       response.error!
     end
