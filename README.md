@@ -6,7 +6,7 @@ Save content to read later. Read what's most interesting. **Get a fresh start ev
 
 Drawing inspiration from Instapaper and Pocket, Freshreader aims to be the place where you save content from around the Web to enjoy later. The major difference is this: Freshreader automatically lets go of saved content after 7 days. No more massive reading backlog: just what is still relevant.
 
-Don't worry--if it's important, it'll somehow come back into your life.
+Don't worry—if it's important, it'll somehow come back into your life.
 
 Made using Ruby on Rails.
 
