@@ -50,4 +50,14 @@ class RequestHelperTest < ActiveSupport::TestCase
     assert_equal expected_title, actual_title
     assert_equal expected_uri, actual_uri.to_s
   end
+
+  test '.extract_title_from_page handles relative redirections' do
+    expected_title = "A Short History of Bi-Directional Links"
+    expected_uri = "https://maggieappleton.com/bidirectionals/"
+
+    actual_title, actual_uri = RequestHelper.extract_title_from_page('https://maggieappleton.com/bidirectionals')
+
+    assert_equal expected_title, actual_title
+    assert_equal expected_uri, actual_uri.to_s
+  end
 end
