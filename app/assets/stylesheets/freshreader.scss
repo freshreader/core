@@ -3,13 +3,16 @@ $color-bg: white;
 $color-text: #333333;
 $color-border: #cccccc;
 
+$font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+
 $color-text-light: lighten($color-text, 30);
 $focus-color: #ffe8bc;
 $hover-color: #fffaf1;
 
-
 * {
   box-sizing: border-box;
+  transition: background-color 100ms, color 100ms, border-color 100ms !important;
 }
 
 *:before, *:after {
@@ -28,12 +31,12 @@ body {
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 7em; /* height of your footer */
+  padding-bottom: 8em;
 }
 
 body {
   color: $color-text;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
   line-height: 1.6;
   background: $color-bg;
   @media (min-width: 768px) {
@@ -69,14 +72,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .account-number {
-  font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+  font-family: $font-family-monospace;
   font-size: 1.2em;
   padding: 0.5em 1em;
   background: #ffecd6;
   border-radius: 3px;
-  border: 3px dashed bisque;
+  border: 3px dashed #dfc9af;
   font-weight: bold;
   margin: 1em 0;
+  color: #533d23;
 }
 
 .nav-link{
@@ -86,11 +90,22 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
   text-decoration: none;
+
   border-bottom: 1px solid $color-border;
+
+  @media (prefers-color-scheme: dark) {
+    color: #eeeeee;
+    border-color: #505050;
+  }
+
   color: $color-primary;
   &:hover {
     color: black;
-    background: $hover-color;
+    background-color: $hover-color;
+    @media (prefers-color-scheme: dark) {
+      background-color: #303030;
+      color: white;
+    }
   }
   &:after {
     position: relative;
@@ -107,6 +122,11 @@ a {
 *:focus {
   background: $focus-color !important;
   color: black !important;
+  border-color: black !important;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: lighten(#d9aa3b, 10) !important;
+  }
 }
 
 .flex {
@@ -122,7 +142,13 @@ input[type="text"] {
   border: 1px solid $color-border;
   padding: 0.5em;
   margin: 0 -1px 0 0;
-  background: lighten($color-bg, 10);
+  background-color: white;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #404040;
+    border: 1px solid transparent;
+    color: #aaaaaa;
+  }
 }
 
 #url-input-wrapper {
@@ -155,7 +181,6 @@ input[type="submit"] {
   color: white;
   cursor: pointer;
   border-radius: 3px;
-  transition: background-color 100ms ease-in-out;
   &:hover {
     background-color: darken($color-primary, 5);
     color: white;
@@ -166,6 +191,7 @@ input[type="submit"] {
   &.btn-danger {
     color: white;
     background: #930d0d;
+    border-color: lighten(#930d0d, 3);
     &:hover {
       background-color: darken(#930d0d, 5);
       color: white;
@@ -174,17 +200,23 @@ input[type="submit"] {
   &.btn-url-save {
     border-radius: 0 3px 3px 0;
   }
+  &.btn-success {
+    $btn-success-color: hsl(129.9, 53.4%, 28.8%);
+    background: $btn-success-color;
+    border-color: lighten($btn-success-color, 3);
+    &:hover {
+      background-color: darken($btn-success-color, 5);
+      color: white;
+    }
+  }
 }
 
 .btn, button, input {
-  padding: 0.5em 0.75em;
+  padding: 0.5em 1em;
 }
 
 .btn-large {
   font-size: 1.3em;
-}
-
-.article-title {
 }
 
 .check {
@@ -210,12 +242,6 @@ input[type="submit"] {
 .article-timestamp {
   font-size: 0.8em;
   color: $color-text-light;
-}
-
-#home {
-  max-width: 36em;
-  margin: 0 auto;
-  margin-top: 5vw;
 }
 
 #above-the-fold {
@@ -253,6 +279,33 @@ footer {
 }
 
 code {
+  font-family: $font-family-monospace;
   padding: 0.2em;
   background: #f8f8f8;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #000000;
+    color: #cccccc;
+  }
+
+  code {
+    background: #303030;
+  }
+
+  .btn,
+  button,
+  input[type="submit"] {
+    background: #303030;
+    border: 1px solid #404040;
+  }
+
+  .article {
+    border-color: #404040;
+  }
+
+  hr {
+    background: #404040;
+  }
 }

@@ -5,7 +5,7 @@
       <%= f.label :name, 'Save new URL', class: 'url-input-label' %>
       <div class="flex">
         <%= f.text_field :url, id: 'url-input', placeholder: 'https://...', class: 'flex-1' %>
-        <%= f.submit 'Save', class: "btn-url-save no-margin" %>
+        <%= f.submit 'Save', class: "btn-url-save btn-success no-margin" %>
       </div>
     <% end %>
   </div>
@@ -14,7 +14,7 @@
       <% @articles.each do |article| %>
         <div class="article flex">
           <div class="flex-1">
-            <div><a class="article-title" target="_blank" href="<%= article.url %>"><%= article.title || article.url %></a></div>
+            <div><a target="_blank" href="<%= article.url %>"><%= article.title || article.url %></a></div>
             <div class="article-timestamp">
               <%= URI.parse(URI.escape(article.url)).host %>
               &middot;
