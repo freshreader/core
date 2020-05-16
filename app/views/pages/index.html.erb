@@ -10,15 +10,13 @@
   <% if logged_in? %>
     <%= link_to "View saved articles", '/articles', class: "btn btn-large internal-link" %>
   <% else %>
-    <%= link_to "Generate account", '/signup', method: :post, class: "btn btn-large btn-signup internal-link" %>
+    <%= link_to "Generate account", '/signup', method: :post, class: "btn btn-large btn-success internal-link" %>
     <%= link_to "Login", '/login', class: "btn btn-login internal-link" %>
   <% end %>
 </div>
 
-<hr>
-
 <div class="wrapper">
-  <div id="home">
+  <div>
     <p>
       Hi, I'm Max. I made Freshreader because I'm just like you, and I get you. You and I, and many others, we're a curious tribe. We want to read and learn and explore <i>everything</i>. We spend our evenings and/or weekends catching up on what matters to us.
     </p>
@@ -60,8 +58,8 @@
     <% if logged_in? %>
       <%= link_to "View saved articles", '/articles', class: "btn internal-link" %>
     <% else %>
+      <%= link_to "Generate account", '/signup', method: :post, class: "btn btn-success internal-link" %>
       <%= link_to "Login", '/login', class: "btn btn-login internal-link" %>
-      <%= link_to "Generate account", '/signup', method: :post, class: "btn btn-signup internal-link" %>
     <% end %>
   </div>
 </div>
