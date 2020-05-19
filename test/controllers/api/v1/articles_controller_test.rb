@@ -1,7 +1,10 @@
-class ArticlesControllerTest < ActionDispatch::IntegrationTest
+class Api::V1::ArticlesControllerTest < ActionDispatch::IntegrationTest
 	setup do
     @user = create_user
     @credentials = authenticate(@user.api_auth_token, @user.account_number)
+
+    @user2 = create_user
+    @credentials2 = authenticate(@user2.api_auth_token, @user2.account_number)
 	end
 
   teardown do
@@ -93,6 +96,30 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_equal(0, Article.count)
   end
 
+  def test_delete_existing_article_from_another_user_fails
+    inserted_article = assert_difference('Article.count', 1) do
+      post(
+        '/api/v1/articles',
+        params: { url: 'https://example.com/' },
+        headers: { "Authorization" => @credentials },
+      )
+      assert_response(:created)
+      Article.last
+    end
+
+    assert_equal(1, Article.count)
+
+    assert_difference('Article.count', 0) do
+      delete(
+        "/api/v1/articles/#{inserted_article.id}",
+        headers: { "Authorization" => @credentials2 },
+      )
+      assert_response(:not_found)
+    end
+
+    assert_equal(1, Article.count)
+  end
+
 	private
 
   def authenticate(token, account_number)
@@ -101,8 +128,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   def create_user
     user = User.new(
-      account_number: '1234123412341234',
-      api_auth_token: '12345',
+      account_number: User.generate_account_number,
+      api_auth_token: User.generate_api_auth_token,
       api_auth_token_expires_at: Time.now + 10.minute
     )
     user.save
