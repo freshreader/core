@@ -1,4 +1,4 @@
-class UsersControllerTest < ActionDispatch::IntegrationTest
+class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 	setup do
     @user = create_user
     @credentials = authenticate(@user.api_auth_token, @user.account_number)

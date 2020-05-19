@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find_by(id: params[:id], user: current_user)
-    if @article.destroy
+    if @article&.destroy
       flash[:success] = 'Marked as read successfully.'
     else
       flash[:error] = 'There was an issue marking this article as read.'
