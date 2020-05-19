@@ -22,7 +22,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   end
 
   def destroy
-    article = Article.find(params[:id])
+    article = Article.find_by(id: params[:id], user: current_user)
 
     if article.destroy
       head :no_content
