@@ -11,7 +11,7 @@
     <%= link_to "View saved articles", '/articles', class: "btn btn-large internal-link" %>
   <% else %>
     <%= link_to "Generate account", '/signup', method: :post, class: "btn btn-large btn-signup internal-link" %>
-    <%= link_to "Login", '/login', class: "btn btn-login internal-link" %>
+    <%= link_to t(:hello), '/login', class: "btn btn-login internal-link" %>
   <% end %>
 </div>
 
