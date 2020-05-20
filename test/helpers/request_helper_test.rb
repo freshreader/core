@@ -1,5 +1,8 @@
 require 'test_helper'
 
+# Yes, I know, running tests that connect to the actual wild Internet
+# will burn me one day, but for now this is fine :this-is-fine-dog:
+
 class RequestHelperTest < ActiveSupport::TestCase
   test '.title_from_response_body parses non-utf8 characters' do
     expected = '«Nous devons agir maintenant», dit Theresa Tam'
@@ -59,5 +62,16 @@ class RequestHelperTest < ActiveSupport::TestCase
 
     assert_equal expected_title, actual_title
     assert_equal expected_uri, actual_uri.to_s
+  end
+
+  test '.extract_title_from_page handles multiple redirections' do
+    expected_title = "The Business Value of Site Speed — And How to Analyze it Step by Step"
+    expected_uri = "https://insights.project-a.com/the-business-value-of-site-speed-and-how-to-analyze-it-step-by-step"
+
+    uri = 'https://calibreapp.us2.list-manage.com/track/click?u=9067434ef642e9c92aa7453d2&id=53148e0f59&e=df60486ca8'
+    actual_title, actual_uri = RequestHelper.extract_title_from_page(uri)
+
+    assert_equal expected_title, actual_title
+    assert_includes actual_uri.to_s, expected_uri.to_s
   end
 end
