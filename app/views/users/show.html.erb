@@ -1,45 +1,47 @@
 <div class='wrapper'>
   <h1>Your account</h1>
-  <p>
-    This is your account number. Use it to log in to Freshreader. Store it somewhere safe.<br>
-  </p>
 
-  <code class="account-number">
-    <%= @user.pretty_account_number %>
-  </code>
+  <div class="card">
+    <h2>Account number</h2>
+    <p>
+      This is your account number. Use it to log in to Freshreader. Store it somewhere safe.<br>
+    </p>
 
-  <p>
-    That's right. No username, no password. Simple as that.
-  </p>
+    <code class="account-number">
+      <%= @user.pretty_account_number %>
+    </code>
 
-  <hr>
+    <p>
+      That's right. No username, no password. Simple as that.
+    </p>
+  </div>
 
-  <h2>How to save content</h2>
+  <div class="card">
+    <h2>How to save content</h2>
 
-  <ul>
-    <li>
-      Using the bookmarklet—drag this link to your bookmarks bar: <a style="font-weight: bold" onclick="return false;" class="internal-link" href="javascript:location.href='https://freshreader.app/save?url='+encodeURIComponent(location.href)">Save to Freshreader</a>
-    </li>
-    <li>
-      Using the Android app (beta): download the .apk file to get started saving content to your list! <a style="font-weight: bold" class="internal-link" href="/apks/freshreader-v1.0.0.apk">Download Android app (freshreader-v1.0.0.apk)</a>
-    </li>
-  </ul>
+    <ul>
+      <li>
+        Using the bookmarklet—drag this link to your bookmarks bar: <a style="font-weight: bold" onclick="return false;" class="internal-link" href="javascript:location.href='https://freshreader.app/save?url='+encodeURIComponent(location.href)">Save to Freshreader</a>
+      </li>
+      <li>
+        Using the Android app (beta): download the .apk file to get started saving content to your list! <a style="font-weight: bold" class="internal-link" href="/apks/freshreader-v1.0.0.apk">Download Android app (freshreader-v1.0.0.apk)</a>
+      </li>
+    </ul>
 
-  <p>
-    Now that you know how to save content, let's open your reading list:
-    <%= link_to "View saved items", '/articles', class: "internal-link", style: "font-weight: bold;" %>
-  </p>
+    <p>
+      Now that you know how to save content, let's open your reading list:
+      <%= link_to "View saved items", '/articles', class: "internal-link", style: "font-weight: bold;" %>
+    </p>
+  </div>
 
-  <hr>
-
-  <div>
+  <div class="card">
     <h2>Danger zone</h2>
     <p>
-      Not interested in Freshreader anymore? That's okay, I'm glad you were here for a while. :)
+      Not interested in Freshreader anymore? That's okay! I hope you enjoyed your time here.
+    </p>
 
-      This deletes your account and your saved articles from the database. There's no going back.
-
-      Keep learning every day!
+    <p>
+      This button deletes all data associated with your Freshreader account, forever.
     </p>
 
     <%= button_to 'Delete account', :account, method: :delete, class: 'btn-danger internal-link', onclick: "return confirm('Are you sure you want to delete your Freshreader account?');"%>

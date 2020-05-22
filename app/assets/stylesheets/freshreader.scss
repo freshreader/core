@@ -1,5 +1,5 @@
 $color-primary: black;
-$color-bg: white;
+$color-bg: #f5f6f7;
 $color-text: #333333;
 $color-border: #cccccc;
 
@@ -12,13 +12,12 @@ $hover-color: #fffaf1;
 
 * {
   box-sizing: border-box;
-  transition: background-color 100ms, color 100ms, border-color 100ms !important;
+  transition: background-color 100ms, color 100ms, border-color 100ms, opacity 100ms !important;
 }
 
 *:before, *:after {
   box-sizing: border-box;
 }
-
 
 html,
 body {
@@ -49,7 +48,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.3;
+  line-height: 0.25;
+  margin-bottom: 1em;
 }
 
 .x-y-center {
@@ -91,11 +91,15 @@ h1, h2, h3, h4, h5, h6 {
 a {
   text-decoration: none;
 
-  border-bottom: 1px solid $color-border;
+  &:not(.no-border-bottom) {
+    border-bottom: 1px solid $color-border;
+    @media (prefers-color-scheme: dark) {
+      border-color: #303030;
+    }
+  }
 
   @media (prefers-color-scheme: dark) {
     color: #eeeeee;
-    border-color: #505050;
   }
 
   color: $color-primary;
@@ -145,8 +149,8 @@ input[type="text"] {
   background-color: white;
 
   @media (prefers-color-scheme: dark) {
-    background-color: #404040;
-    border: 1px solid transparent;
+    background-color: #0d0d0d;
+    border: 1px solid #4f4f4f;
     color: #aaaaaa;
   }
 }
@@ -175,23 +179,26 @@ hr {
 .btn,
 button,
 input[type="submit"] {
-  font-weight: bold;
-  background-color: $color-primary;
+  $btn-bg-color: #eaeaea;
+  background: $btn-bg-color;
   border: 1px solid transparent;
-  color: white;
+  border-color: $color-border;
+  &:hover {
+    background-color: darken($btn-bg-color, 5);
+  }
+
+  color: #222;
   cursor: pointer;
   border-radius: 3px;
-  &:hover {
-    background-color: darken($color-primary, 5);
-    color: white;
-  }
+
   &:not(.no-margin) {
     margin: 0 0.5em 0.5em 0;
   }
+
   &.btn-danger {
     color: white;
     background: #930d0d;
-    border-color: lighten(#930d0d, 3);
+    border-color: darken(#930d0d, 5);
     &:hover {
       background-color: darken(#930d0d, 5);
       color: white;
@@ -200,12 +207,14 @@ input[type="submit"] {
   &.btn-url-save {
     border-radius: 0 3px 3px 0;
   }
+
   &.btn-success {
-    $btn-success-color: hsl(129.9, 53.4%, 28.8%);
-    background: $btn-success-color;
-    border-color: lighten($btn-success-color, 3);
+    color: white;
+    $btn-success-bg-color: #2d843c;
+    background: $btn-success-bg-color;
+    border-color: darken($btn-success-bg-color, 5);
     &:hover {
-      background-color: darken($btn-success-color, 5);
+      background-color: darken($btn-success-bg-color, 5);
       color: white;
     }
   }
@@ -233,10 +242,60 @@ input[type="submit"] {
   margin: 2em 0;
 }
 
-.article {
+.day-0 {
+  opacity: 1;
+}
+
+.day-1 {
+  opacity: 0.9;
+}
+
+.day-2 {
+  opacity: 0.8;
+}
+
+.day-3 {
+  opacity: 0.7;
+}
+
+.day-4 {
+  opacity: 0.6;
+}
+
+.day-5 {
+  opacity: 0.5;
+}
+
+.day-6 {
+  opacity: 0.35;
+}
+
+.day-7 {
+  opacity: 0.2;
+}
+
+// shouldn't be possible, but hey, you never know
+.day-8 {
+  opacity: 0.1;
+}
+
+.card {
   margin-bottom: 1em;
-  padding-bottom: 1em;
-  border-bottom: 1px solid lighten($color-border, 8);
+  padding: 20px 24px;
+  &.card-sm {
+  padding: 15px 20px;
+  }
+  background: white;
+  box-shadow: 0 2px 4px 0 hsla(0, 0%, 10%, 0.05);
+  border-radius: 4px;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #080808;
+  }
 }
 
 .article-timestamp {
@@ -299,10 +358,17 @@ code {
   input[type="submit"] {
     background: #303030;
     border: 1px solid #404040;
+    color: #979797;
+    &:hover {
+      background-color: darken(#303030, 5);
+    }
   }
 
-  .article {
-    border-color: #404040;
+  .account-number {
+    background: #352e26;
+    border-radius: 3px;
+    border: 3px dashed #574d42;
+    color: #b3a18d;
   }
 
   hr {
