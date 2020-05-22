@@ -5,14 +5,14 @@
       <%= f.label :name, 'Save new URL', class: 'url-input-label' %>
       <div class="flex">
         <%= f.text_field :url, id: 'url-input', placeholder: 'https://...', class: 'flex-1' %>
-        <%= f.submit 'Save', class: "btn-url-save btn-success no-margin" %>
+        <%= f.submit 'Save', class: "btn-url-save no-margin" %>
       </div>
     <% end %>
   </div>
   <div class="articles-wrapper">
     <% if @articles.size > 0 %>
       <% @articles.each do |article| %>
-        <div class="article flex">
+        <div class="card card-sm flex day-<%= article.age_in_days %>">
           <div class="flex-1">
             <div><a target="_blank" href="<%= article.url %>"><%= article.title || article.url %></a></div>
             <div class="article-timestamp">

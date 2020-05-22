@@ -12,4 +12,8 @@ class Article < ApplicationRecord
       'created_at' => created_at,
     }
   end
+
+  def age_in_days
+    ((Time.now.utc - self.created_at) / 1.day).round
+  end
 end
