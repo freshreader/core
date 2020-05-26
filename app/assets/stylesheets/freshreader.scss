@@ -30,7 +30,7 @@ body {
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 8em;
+  padding-bottom: 12em;
 }
 
 body {
@@ -299,7 +299,7 @@ input[type="submit"] {
   }
 
   @media (prefers-color-scheme: dark) {
-    background-color: #080808;
+    background-color: #181818;
   }
 
   p:last-child {
@@ -353,8 +353,9 @@ footer {
 
 code {
   font-family: $font-family-monospace;
-  padding: 0.2em;
-  background: #f8f8f8;
+  padding: 0.1em 0.2em;
+  background: #e8e8e8;
+  border-radius: 3px;
 }
 
 @media (prefers-color-scheme: dark) {
