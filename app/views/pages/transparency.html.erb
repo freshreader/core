@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <h1>Transparency</h1>
+
+  <h2>Accounts</h2>
+  <ul>
+    <li>
+      In the past week, <%= User.all.map(&:articles).map(&:size).reject(&:zero?).size %> accounts were active.
+    </li>
+    <li>
+      In the past week, <%= User.where('created_at > ?', 7.days.ago).size %> accounts were created.
+    </li>
+    <li>
+      There is currently a total of <%= User.count %> accounts. This includes accounts that don't have any activity.
+    </li>
+  </ul>
+  <p>These numbers do not include deleted accounts.</p>
+
+  <h2>Saved items</h2>
+  <ul>
+    <li>
+      Collectively, Freshreader users currently have <%= Article.where('created_at > ?', 7.days.ago).size %> items saved in their lists. Some of those will likely never be read, and that's perfectly okay! 🙂
+    </li>
+  </ul>
+</div>
