@@ -6,4 +6,7 @@ class PagesController < ApplicationController
 
   def privacy
   end
+
+  def transparency
+  end
 end

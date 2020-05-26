@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'pages#index', as: :index
   get 'privacy', to: 'pages#privacy'
+  get 'transparency', to: 'pages#transparency'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
