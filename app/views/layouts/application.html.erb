@@ -16,19 +16,21 @@
   <body>
     <div id="main-container">
       <div class="nav">
-        <div>
+        <div class="wrapper">
           <div class="flex">
             <div class="flex-1">
               <a class="internal-link no-border-bottom" href="<% if logged_in? %>/articles<% else %>/<% end %>">
                 <img id="nav-logo" src="<%= image_url("logo.svg") %>"/>
+                Freshreader
               </a>
             </div>
             <p>
               <% if logged_in? %>
-                <%= link_to "View list", '/articles', class: "internal-link nav-link" %>
-                <%= link_to "View account", '/account', class: "internal-link nav-link" %>
+                <%= link_to "Reading list", '/articles', class: "internal-link nav-link" %>
+                <%= link_to "Account", '/account', class: "internal-link nav-link" %>
                 <%= link_to "Log out", '/logout', method: :post, class: "internal-link nav-link" %>
               <% else %>
+                <%= link_to "Create an account", '/signup', method: :post, class: "btn btn-small btn-success internal-link" %>
                 <%= link_to "Log in", '/login', method: :get, class: "internal-link nav-link" %>
               <% end %>
             </p>
@@ -51,7 +53,6 @@
       <footer>
         <div class="wrapper">
           <p>
-            <a target="_blank" href="https://www.buymeacoffee.com/vaillancourtmax">Support Freshreader's continued operation</a> 🙏
           </p>
           <p>
             Built by <a target="_blank" href="https://twitter.com/vaillancourtmax">Maxime Vaillancourt</a> in Montreal, Canada ✌️
@@ -63,7 +64,7 @@
             &middot;
             <%= link_to "👨‍💻 Open source", 'https://github.com/freshreader' %>
             &middot;
-            <%= link_to "👋 Feedback", 'https://github.com/freshreader/core/issues' %>
+            <%= link_to "❤️ Donate", "https://www.buymeacoffee.com/vaillancourtmax" %>
           </div>
         </div>
       </footer>

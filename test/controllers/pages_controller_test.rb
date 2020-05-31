@@ -14,7 +14,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
     get('/')
 
-    assert_includes(response.body, 'View list')
+    assert_includes(response.body, 'Reading list')
     refute_includes(response.body, 'Log in')
     assert_response(:success)
   end

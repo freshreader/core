@@ -1,11 +1,11 @@
 <div class="wrapper">
-  <h2>Saved articles</h2>
+  <h2>Reading list</h2>
   <div id="url-input-wrapper">
     <%= form_for @new_article do |f| %>
       <%= f.label :name, 'Save new URL', class: 'url-input-label' %>
       <div class="flex">
         <%= f.text_field :url, id: 'url-input', placeholder: 'https://...', class: 'flex-1' %>
-        <%= f.submit 'Save', class: "btn-url-save no-margin" %>
+        <%= f.submit 'Save', class: "btn-input-group no-margin" %>
       </div>
     <% end %>
   </div>
@@ -27,7 +27,27 @@
         </div>
       <% end %>
     <% else %>
-      Nothing saved yet. Try saving an URL above to get started.
+      <p>Your list is empty. 🍃</p>
+
+      <div class="card card-dimmed" style="font-size: 0.9em;">
+        <div class="card-title">How to save content to your list</div>
+
+        <p>Use one of the following methods to save content to your Freshreader list:</p>
+        <ul>
+          <li>
+            <span style="font-weight: bold;">Browser extension</span>: <a href="https://addons.mozilla.org/en/firefox/addon/save-to-freshreader/" target="_blank">Mozilla Firefox</a> and <a href="https://chrome.google.com/webstore/detail/save-to-freshreader/bdmbfhckhooihghmnhaomilcamhmpoec" target="_blank">Google Chrome</a>
+          </li>
+          <li>
+            <span style="font-weight: bold;">Bookmarklet</span>: Drag this link to your bookmarks bar: <a style="font-weight: bold" onclick="return false;" class="internal-link" href="javascript:location.href='https://freshreader.app/save?url='+encodeURIComponent(location.href)">Save to Freshreader</a>
+          </li>
+          <li>
+            <span style="font-weight: bold;">Android app</span>: <a target="_blank" href="https://github.com/freshreader/android/releases/download/v1.0.0/freshreader-v1.0.0.apk">freshreader-v1.0.0.apk</a>
+          </li>
+          <li>
+            <span style="font-weight: bold;">iOS app</span>: not ready yet, stay tuned!
+          </li>
+        </ul>
+      </div>
     <% end %>
   </div>
 </div>

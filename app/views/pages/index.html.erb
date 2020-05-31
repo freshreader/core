@@ -1,65 +1,77 @@
-<div class="wrapper large-wrapper" id='above-the-fold'>
-  <p>
-    <img id="hero-image" src="<%= image_url("opened_tabs.svg") %>"/>
-    <h1>Say goodbye to that 50-tab browser window.</h1>
-    <p class="lead">
-      Save content to read later. Read what's most interesting.<br>
-      <b>Get a fresh start every week.</b>
+<div id='above-the-fold'>
+  <div class="wrapper large-wrapper">
+    <p>
+      <h1 style="font-weight: 800">A reading list that cares about you.</h1>
+      <p>
+        Freshreader is a simple, open-source reading list app with a twist: <b>saved content disappears after 7 days</b>. This way, your list doesn't grow infinitely, and you can focus on what's relevant <i>today</i>. What joy!
+      </p>
     </p>
-  </p>
-  <% if logged_in? %>
-    <%= link_to "View saved articles", '/articles', class: "btn btn-large internal-link" %>
-  <% else %>
-    <%= link_to "Generate account", '/signup', method: :post, class: "btn btn-large btn-success internal-link" %>
-    <%= link_to "Login", '/login', class: "btn btn-login internal-link" %>
-  <% end %>
+    <% if logged_in? %>
+      <%= link_to "View my reading list", '/articles', class: "btn btn-large btn-success internal-link" %>
+    <% else %>
+      <%= link_to "Get started", '/signup', method: :post, class: "btn btn-large btn-success internal-link" %>
+      <br>
+      (it's free!)
+    <% end %>
+  </div>
+  <img id="hero-image" src="<%= image_url("https://user-images.githubusercontent.com/8457808/83359026-7b9a4480-a345-11ea-8e81-7c736b2b920a.png")%>" />
+</div>
+
+<div style="background: white; padding: 3em 0; border-top: 1px solid #ddd;">
+  <div class="wrapper">
+    <div>
+      <h3>Save content from anywhere on the Web 🦋</h3>
+      <p>
+        If you have a browser window with tabs so small we can't even read the titles anymore, and you frequently think "I'll read/watch this later", but actually never do, then you'll love Freshreader. 
+      </p>
+
+      <p>Use the browser extensions (available for Firefox and Chrome), the Android app (iOS on the way!), or the bookmarklet to save content to your list.
+
+      <h3>Let go of old saved content 🦉</h3>
+
+      <p>
+        Marie Kondo was right: clutter is unhealthy. Freshreader declutters your reading list for you by letting go of saved content after 7 days</b>. This way, your list doesn't grow infinitely, and you can focus on what's relevant today. What's more, if we don't read something within 7 days of finding it, I likely we won't read it the next week either, so best to just let go of it.
+      </p>
+
+      <h3>Trust that the future will resurface the important stuff 🦢</h3>
+
+      <p>
+        If something's important enough, it'll somehow make its way back into your life. There's no need to try and consume everything today: read what makes sense today, and trust that the future will bring you what you need.
+      </p>
+    </div>
+
+  </div>
 </div>
 
 <div class="wrapper">
-  <div>
+  <div class="card testimonial">
     <p>
-      Hi, I'm Max. I made Freshreader because I'm just like you, and I get you. You and I, and many others, we're a curious tribe. We want to read and learn and explore <i>everything</i>. We spend our evenings and/or weekends catching up on what matters to us.
+      It's such a good idea and definitely the twist I was looking for as I often find myself saving articles and never looking back at them. Thanks for creating this 🙂
     </p>
 
-    <p>
-      Cue the browser window with tabs so small we can't even read the titles anymore, the FOMO-inducing Twitter firehose, the dozen unread newsletters, and the hundred bookmarks across all ours devices, thinking "I'll read this later", but actually never do.
-    </p>
+    <div>
+      <img class="testimonial-img" src="<%= image_url("karthik.jpg")%>">
+      <span class="testimonial-name">
+        <a href="https://twitter.com/NandulaKarthik">Karthik Nandula, blogger</a>
+      </span>
+    </div>
+  </div>
+</div>
 
-    <p>
-    In the face of this information overload, we sign up for "read later" services, where we dump more content than we can ever read in a lifetime, only to end up with yet <i>another</i> inbox to deal with. How annoying and draining is that?
-    </p>
-
-    <p>
-      Freshreader aims to be where you go to read content in a relaxed way. You don't even need to read everything, quite the opposite actually.
-    </p>
-
-    <p>
-      Find what's most relevant to you, and read it. Then, let go of the rest.
-    </p>
-
-    <p>
-      In fact, Freshreader forces you get a fresh start every week. That's right: <b>Freshreader automatically lets go of content you saved more than a week ago</b>. This way, your list doesn't grow infinitely.
-    </p>
-
-    <p>
-      There's something comforting in letting go and getting a fresh start every week.
-    </p>
-
-    <h3>If it's important, it'll somehow come back into your life</h3>
-
-    <p>
-      I noticed that if something's important enough, it'll somehow make its way back into your life. There's no need to try and consume everything today: read what makes sense today, and trust that the future will bring you what you need.
-    </p>
-
-    <p>
-      Sounds exciting? Let's get started.
-    </p>
-
+<div style="background: #1c4022; color: white; padding: 3em 0;">
+  <div class="wrapper" style="text-align: center;">
     <% if logged_in? %>
-      <%= link_to "View saved articles", '/articles', class: "btn internal-link" %>
+      <p class="lead" style="margin-bottom: 0.5em;">
+        <span style="font-weight: 800;">You are already logged in.</span>
+      </p>
+
+      <%= link_to "View my reading list", '/articles', class: "btn btn-large btn-success internal-link" %>
     <% else %>
-      <%= link_to "Generate account", '/signup', method: :post, class: "btn btn-success internal-link" %>
-      <%= link_to "Login", '/login', class: "btn btn-login internal-link" %>
+      <p class="lead" style="margin-bottom: 0.5em;">
+        <span style="font-weight: 800;">Sounds exciting?</span> Let's&nbsp;get&nbsp;started.
+      </p>
+
+      <%= link_to "Create an account", '/signup', method: :post, class: "btn btn-large btn-success internal-link" %>
     <% end %>
   </div>
 </div>
