@@ -4,7 +4,11 @@
     <%= label_tag :account_number, 'Account number', class: 'url-input-label' %>
     <div class="flex">
       <%= text_field_tag :account_number, "", placeholder: '0000 0000 0000 0000', class: "flex-1" %>
-      <%= submit_tag "Login", class: 'no-margin' %>
+      <%= submit_tag "Login", class: 'btn-input-group no-margin' %>
     </div>
+
+    <p>
+      Don't have an account yet? <%= link_to "Create an account", '/signup', method: :post, class: "internal-link" %>.
+    </p>
   <% end %>
 </div>

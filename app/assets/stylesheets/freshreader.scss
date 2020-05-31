@@ -1,7 +1,7 @@
 $color-primary: black;
-$color-bg: #f5f6f7;
+$color-bg: #f8f9f9;
 $color-text: #333333;
-$color-border: #cccccc;
+$color-border: #dddddd;
 
 $font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-monospace: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
@@ -44,7 +44,6 @@ body {
   @media (max-width: 767px) {
     font-size: 1em;
   }
-  padding: 0 1.2rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -58,8 +57,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .wrapper {
-  max-width: 55rem;
+  max-width: 65rem;
   margin: 0 auto;
+  padding: 0 1.2rem;
 }
 
 .nav {
@@ -95,23 +95,23 @@ a {
 
   &:not(.no-border-bottom) {
     border-bottom: 1px solid $color-border;
-    @media (prefers-color-scheme: dark) {
-      border-color: #303030;
-    }
+    // @media (prefers-color-scheme: dark) {
+    //   border-color: #303030;
+    // }
   }
 
-  @media (prefers-color-scheme: dark) {
-    color: #eeeeee;
-  }
+  // @media (prefers-color-scheme: dark) {
+  //   color: #eeeeee;
+  // }
 
   color: $color-primary;
   &:hover {
     color: black;
     background-color: $hover-color;
-    @media (prefers-color-scheme: dark) {
-      background-color: #303030;
-      color: white;
-    }
+    // @media (prefers-color-scheme: dark) {
+    //   background-color: #303030;
+    //   color: white;
+    // }
   }
   &:after {
     position: relative;
@@ -130,14 +130,14 @@ a {
   color: black !important;
   border-color: black !important;
 
-  @media (prefers-color-scheme: dark) {
-    background-color: lighten(#d9aa3b, 10) !important;
-  }
+  // @media (prefers-color-scheme: dark) {
+  //   background-color: lighten(#d9aa3b, 10) !important;
+  // }
 }
 
 .flex {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 
 .flex-1 {
@@ -150,11 +150,11 @@ input[type="text"] {
   margin: 0 -1px 0 0;
   background-color: white;
 
-  @media (prefers-color-scheme: dark) {
-    background-color: #0d0d0d;
-    border: 1px solid #4f4f4f;
-    color: #aaaaaa;
-  }
+  // @media (prefers-color-scheme: dark) {
+  //   background-color: #0d0d0d;
+  //   border: 1px solid #4f4f4f;
+  //   color: #aaaaaa;
+  // }
 }
 
 #url-input-wrapper {
@@ -181,6 +181,7 @@ hr {
 .btn,
 button,
 input[type="submit"] {
+  display: inline-block;
   $btn-bg-color: #eaeaea;
   background: $btn-bg-color;
   border: 1px solid transparent;
@@ -200,21 +201,23 @@ input[type="submit"] {
   &.btn-danger {
     color: white;
     background: #930d0d;
-    border-color: darken(#930d0d, 5);
+    border-color: transparent;
+    padding: 0.5em 1em;
     &:hover {
       background-color: darken(#930d0d, 5);
       color: white;
     }
   }
-  &.btn-url-save {
+  &.btn-input-group {
     border-radius: 0 3px 3px 0;
+    padding: 0.5em 1em;
   }
 
   &.btn-success {
     color: white;
     $btn-success-bg-color: #2d843c;
     background: $btn-success-bg-color;
-    border-color: darken($btn-success-bg-color, 5);
+    border-color: transparent;
     &:hover {
       background-color: darken($btn-success-bg-color, 5);
       color: white;
@@ -223,11 +226,15 @@ input[type="submit"] {
 }
 
 .btn, button, input {
-  padding: 0.5em 1em;
+  padding: 0.3em 1em;
 }
 
 .btn-large {
   font-size: 1.3em;
+}
+
+.btn-small {
+  font-size: 0.8em;
 }
 
 .check {
@@ -294,13 +301,20 @@ input[type="submit"] {
   box-shadow: 0 2px 4px 0 hsla(0, 0%, 10%, 0.05);
   border-radius: 4px;
 
+  &.card-dimmed {
+    background: transparent;
+    box-shadow: none;
+    border: 1px dashed #7c7c7c;
+    color: #7c7c7c;
+  }
+
   &:hover {
     opacity: 1;
   }
 
-  @media (prefers-color-scheme: dark) {
-    background-color: #181818;
-  }
+  // @media (prefers-color-scheme: dark) {
+  //   background-color: #181818;
+  // }
 
   p:last-child {
     margin-bottom: 0;
@@ -327,7 +341,8 @@ input[type="submit"] {
 }
 
 #hero-image {
-  max-height: 80vh;
+  margin-top: 2em;
+  max-height: 50vh;
   max-width: 80%;
 }
 
@@ -358,35 +373,56 @@ code {
   border-radius: 3px;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #000000;
-    color: #cccccc;
-  }
+// @media (prefers-color-scheme: dark) {
+//   body {
+//     background: #000000;
+//     color: #cccccc;
+//   }
+// 
+//   code {
+//     background: #303030;
+//   }
+// 
+//   .btn,
+//   button,
+//   input[type="submit"] {
+//     background: #303030;
+//     border: 1px solid #404040;
+//     color: #979797;
+//     &:hover {
+//       background-color: darken(#303030, 5);
+//     }
+//   }
+// 
+//   .account-number {
+//     background: #352e26;
+//     border-radius: 3px;
+//     border: 3px dashed #574d42;
+//     color: #b3a18d;
+//   }
+// 
+//   hr {
+//     background: #404040;
+//   }
+// }
 
-  code {
-    background: #303030;
-  }
+.testimonial {
+  max-width: 30em;
+  margin: 3em auto;
 
-  .btn,
-  button,
-  input[type="submit"] {
-    background: #303030;
-    border: 1px solid #404040;
-    color: #979797;
-    &:hover {
-      background-color: darken(#303030, 5);
-    }
+  p:first-child {
+    margin-top: 0;
   }
+}
 
-  .account-number {
-    background: #352e26;
-    border-radius: 3px;
-    border: 3px dashed #574d42;
-    color: #b3a18d;
-  }
+.testimonial-img {
+  border-radius: 100%;
+  width: 40px;
+  vertical-align: middle;
+  margin-right: 0.3em;
+}
 
-  hr {
-    background: #404040;
-  }
+.testimonial-name {
+  vertical-align: middle;
+  font-size: 0.9em;
 }
