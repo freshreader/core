@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  ARTICLES_LIMIT_ON_FREE_PLAN = 10
+
   belongs_to :user
   validates :url, presence: true, url: true
 

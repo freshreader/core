@@ -48,10 +48,67 @@
   </div>
 
   <div class="card">
+    <div id="subscription" class="card-title">Subscription</div>
+    <% if @user.subscribed? %>
+      <p>You are on the Pro plan. Thank you for your support!</p>
+      <ul>
+        <li>You help keep Freshreader up and running without ads ❤️</li>
+        <li>You can save unlimited items to your list ➕</li>
+        <!--
+        <li>You can set a custom expiration delay 📅</li>
+        <li>You can enable dark mode for those late night reading sessions 🌙</li>
+        -->
+      </ul>
+
+      <p>Looking to downgrade to the Free plan? This button will downgrade your account immediately.</p>
+      <%= button_to "Cancel subscription", '/cancel_subscription', method: :post, class: "btn-default internal-link", onclick: "return confirm('Are you sure you want to downgrade to the Free plan?');" %>
+    <% elsif @user.early_adopter? %>
+      <p>You were an early adopter, meaning you get the Pro plan at no charge. Thank you for your support! ❤️</p>
+      <ul>
+        <li>You can save unlimited items to your list ➕</li>
+        <!--
+        <li>You can set a custom expiration delay 📅</li>
+        <li>You can enable dark mode for those late night reading sessions 🌙</li>
+        -->
+      </ul>
+    <% else %>
+      <p>You are on the free plan, which is limited to 5 saved items.</p>
+      
+      <b>You can upgrade to Freshreader Pro. For a tiny USD $3/month...</b>
+
+      <ul>
+        <li>You help keep Freshreader up and running without ads ❤️</li>
+        <li>You can save unlimited items to your list ➕</li>
+        <!--
+        <li>You can set a custom expiration delay 📅</li>
+        <li>You can enable dark mode for those late night reading sessions 🌙</li>
+        -->
+      </ul>
+
+      <p><b>Let's upgrade that account! ✨</b></p>
+      
+      <form id="subscription-form">
+        <div id="subscription-form__stripe">
+          <div id="card-element" class="MyCardElement">
+            <!-- Elements will create input elements here -->
+          </div>
+        </div>
+
+        <!-- We'll put the error messages in this element -->
+        <p style="font-size: 0.9em;" id="card-errors" role="alert"></p>
+
+        <button id="submit-button" class="btn-success btn btn-full-width" type="submit">Upgrade</button>
+      </form>
+    <% end %>
+  </div>
+
+  <div class="card">
     <div class="card-title">Danger zone</div>
-    <p>
-      Not interested in Freshreader anymore? That's okay! I hope you enjoyed your time here.
-    </p>
+    <% if @user.subscribed? %>
+      <p>You are currently subscribed to the Pro plan. Deleting your account will stop your subscription.</p>
+    <% elsif @user.early_adopter? %>
+      <p>Your account is an Early Adopter account, meaning you have access to the Pro plan at no charge. You will lose your Early Adopter status by deleting your account.</p>
+    <% end %>
 
     <p>
       This button deletes all data associated with your Freshreader account, forever.
@@ -60,3 +117,8 @@
     <%= button_to 'Delete my account', :account, method: :delete, class: 'btn-danger internal-link', onclick: "return confirm('Are you sure you want to delete your Freshreader account?');"%>
   </div>
 </div>
+
+<div data-attrs="<%= !(@user.subscribed? || @user.early_adopter?) %>" id="user_is_on_free_plan"></div>
+<div data-attrs="<%= Rails.application.credentials[Rails.env.to_sym][:stripe][:public_key] %>" id="stripe_public_key"></div>
+<script src="https://js.stripe.com/v3/"></script>
+<%= javascript_pack_tag 'stripe', 'data-turbolinks-track': 'reload' %>

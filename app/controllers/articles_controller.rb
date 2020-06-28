@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   skip_before_action :authorized, only: [:save_mobile]
+  before_action :check_save_limit, except: [:index, :destroy, :save_mobile]
 
   def index
     @articles = Article.where(user: current_user).sort_by(&:created_at).reverse
@@ -29,6 +30,10 @@ class ArticlesController < ApplicationController
   def save_mobile
     unless user = User.find_by(account_number: params[:account_number].delete(' '))
       return render json: 'This user does not exist.', status: :unauthorized
+    end
+
+    if !(user.subscribed? || user.early_adopter?) && user.articles.size >= Article::ARTICLES_LIMIT_ON_FREE_PLAN
+      return render json: "You cannot save more than #{Article::ARTICLES_LIMIT_ON_FREE_PLAN} items on the free plan. Upgrade to Pro to save more items.", status: :forbidden
     end
 
     url = RequestHelper.url_from_param(params[:url])
@@ -69,5 +74,14 @@ class ArticlesController < ApplicationController
       flash[:error] = 'There was an issue marking this article as read.'
     end
     redirect_to :articles
+  end
+
+  private
+
+  def check_save_limit
+    if !(current_user.subscribed? || current_user.early_adopter?) && current_user.articles.size >= Article::ARTICLES_LIMIT_ON_FREE_PLAN
+      flash[:warning] = "You cannot save more than #{Article::ARTICLES_LIMIT_ON_FREE_PLAN} items on the free plan. #{view_context.link_to('Upgrade to Pro', "/account#subscription", { :class => "internal-link" })} to save more items."
+      redirect_to :articles
+    end
   end
 end

@@ -32,5 +32,9 @@ Rails.application.routes.draw do
   get 'account', to: 'users#show'
   delete 'account', to: 'users#destroy'
 
-  get 'account', to: 'users#show'
+  post 'create_subscription', to: 'billing#create_subscription'
+  post 'retry_invoice', to: 'billing#retry_invoice'
+  post 'stripe/webhooks', to: 'billing#webhooks'
+  post 'subscription_callback', to: 'billing#subscription_callback'
+  post 'cancel_subscription', to: 'billing#cancel_subscription'
 end

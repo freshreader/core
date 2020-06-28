@@ -6,6 +6,10 @@ class Api::V1::ArticlesController < Api::V1::BaseController
 
   def create
     ActiveRecord::Base.transaction do
+      if !(current_user.subscribed? || current_user.early_adopter?) && current_user.articles.size >= Article::ARTICLES_LIMIT_ON_FREE_PLAN
+        return render json: "You cannot save more than #{Article::ARTICLES_LIMIT_ON_FREE_PLAN} items on the free plan. Upgrade to Freshreader Pro to save more items.", status: :forbidden
+      end
+
       url = RequestHelper.url_from_param(params[:url])
       title, fetched_url = RequestHelper.extract_title_from_page(url)
 
