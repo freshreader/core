@@ -1,11 +1,11 @@
 class Api::V1::ArticlesControllerTest < ActionDispatch::IntegrationTest
-	setup do
+  setup do
     @user = create_user
     @credentials = authenticate(@user.api_auth_token, @user.account_number)
 
     @user2 = create_user
     @credentials2 = authenticate(@user2.api_auth_token, @user2.account_number)
-	end
+  end
 
   teardown do
     User.destroy_all
@@ -120,7 +120,7 @@ class Api::V1::ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_equal(1, Article.count)
   end
 
-	private
+  private
 
   def authenticate(token, account_number)
     ActionController::HttpAuthentication::Token.encode_credentials(token, account_number: account_number)
