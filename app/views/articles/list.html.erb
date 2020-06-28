@@ -27,8 +27,12 @@
         </div>
       <% end %>
     <% else %>
-      <p>Your list is empty. 🍃</p>
+      <p style="font-weight: bold;">Your list is empty. 🍃</p>
 
+      <p>Try <%= link_to "adding a random featured Wikipedia article", articles_path(article: { url: 'https://en.wikipedia.org/wiki/Special:RandomInCategory/Featured_articles' }), method: :post, class: 'internal-link' %>. Knowledge awaits! 📙</p>
+    <% end %>
+
+    <% if @articles.size < 3 %>
       <div class="card card-dimmed" style="font-size: 0.9em;">
         <div class="card-title">How to save content to your list</div>
 

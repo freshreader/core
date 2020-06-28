@@ -43,7 +43,7 @@
     </p>
 
     <p>
-      <%= link_to "View my reading list", '/articles', class: "btn btn-success internal-link" %>
+      <%= link_to "View reading list", '/articles', class: "btn btn-success internal-link" %>
     </p>
   </div>
 
@@ -111,7 +111,7 @@
     <% end %>
 
     <p>
-      This button deletes all data associated with your Freshreader account, forever.
+      This button deletes your account number and any articles left in your list, forever.
     </p>
 
     <%= button_to 'Delete my account', :account, method: :delete, class: 'btn-danger internal-link', onclick: "return confirm('Are you sure you want to delete your Freshreader account?');"%>
