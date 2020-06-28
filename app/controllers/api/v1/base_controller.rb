@@ -8,7 +8,7 @@ module Api
 
       def authenticate
         authenticate_or_request_with_http_token do |provided_token, options|
-          return unless user = User.find_by(account_number: options[:account_number])
+          return unless (user = User.find_by(account_number: options[:account_number]))
 
           if valid_auth_token?(user, provided_token)
             user
