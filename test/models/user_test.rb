@@ -29,4 +29,11 @@ class UserTest < ActiveSupport::TestCase
     refute user.valid?
     assert_equal ["can't be blank", 'is invalid'], user.errors[:account_number]
   end
+
+  test 'by default, a new user is not considered as an early adopter' do
+    user = User.new(account_number: User.generate_account_number)
+    user.save
+
+    refute user.early_adopter?
+  end
 end
