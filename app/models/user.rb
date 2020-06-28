@@ -15,6 +15,10 @@ class User < ApplicationRecord
     }
   end
 
+  def early_adopter?
+    is_early_adopter?
+  end
+
   def pretty_account_number
     account_number.chars.each_slice(4).map(&:join).join(' ')
   end
