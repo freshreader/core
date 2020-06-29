@@ -27,7 +27,7 @@ class BillingController < ApplicationController
         { customer: customer_id }
       )
     rescue Stripe::CardError => e
-      render json: { 'error': { message: e.error.message } }.to_json
+      return render json: { 'error': { message: e.error.message } }.to_json
     end
 
     # Set the default payment method on the customer
@@ -68,7 +68,7 @@ class BillingController < ApplicationController
         { customer: current_user.stripe_customer_id }
       )
     rescue Stripe::CardError => e
-      render json: { 'error': { message: e.error.message } }.to_json
+      return render json: { 'error': { message: e.error.message } }.to_json
     end
 
     # Set the default payment method on the customer
