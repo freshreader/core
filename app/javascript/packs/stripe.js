@@ -117,7 +117,7 @@ if (user_is_on_free_plan) {
         window.location = '/account?subscription_complete=false'
       }
     } else {
-      throw "hmm, no subscription"
+      throw "Expected subscription, didn't receive any."
     }
   }
 
@@ -228,7 +228,9 @@ if (user_is_on_free_plan) {
         })
         .then(handleCustomerActionRequired)
         .then(onSubscriptionComplete)
-        .catch((error) => {})
+        .catch((error) => {
+          if (error) showCardError(error);
+        })
     );
   }
 
@@ -263,7 +265,9 @@ if (user_is_on_free_plan) {
         .then(handleCustomerActionRequired)
         .then(handlePaymentMethodRequired)
         .then(onSubscriptionComplete)
-        .catch((error) => {})
+        .catch((error) => {
+          if (error) showCardError(error);
+        })
     );
   }
 }
