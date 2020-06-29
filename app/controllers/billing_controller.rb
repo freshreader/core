@@ -43,7 +43,7 @@ class BillingController < ApplicationController
       customer: customer_id,
       items: [
         {
-          price: 'price_HNkNJHQ344GdIj' # TODO: replace price_id
+          price: FRESHREADER_PRO_MONTHLY_PRICE_ID
         }
       ],
       expand: ['latest_invoice.payment_intent']
