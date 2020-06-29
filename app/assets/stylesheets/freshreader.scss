@@ -33,6 +33,10 @@ body {
   padding-bottom: 12em;
 }
 
+.active {
+  font-weight: bold;
+}
+
 body {
   color: $color-text;
   font-family: $font-family-sans-serif;
@@ -144,6 +148,13 @@ a {
   flex: 1;
 }
 
+.how-it-works-box {
+  font-size: 0.9em;
+  &:nth-child(2) {
+    padding: 0em 2em;
+  }
+}
+
 input[type="text"] {
   border: 1px solid $color-border;
   padding: 0.5em;
@@ -185,6 +196,7 @@ input[type="submit"] {
   $btn-bg-color: #eaeaea;
   background: $btn-bg-color;
   border: 1px solid transparent;
+  padding: 0.5em 1em;
   border-color: $color-border;
   &:hover {
     background-color: darken($btn-bg-color, 5);
@@ -222,6 +234,10 @@ input[type="submit"] {
       background-color: darken($btn-success-bg-color, 5);
       color: white;
     }
+  }
+
+  &.btn-full-width {
+    width: 100%;
   }
 }
 
@@ -408,7 +424,11 @@ code {
 
 .testimonial {
   max-width: 30em;
-  margin: 3em auto;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   p:first-child {
     margin-top: 0;
@@ -425,4 +445,11 @@ code {
 .testimonial-name {
   vertical-align: middle;
   font-size: 0.9em;
+}
+
+#subscription-form__stripe {
+  margin: 0.5em 0 0.7em;
+  padding: 0.5em;
+  background: #f7f7f7;
+  border-radius: 4px;
 }

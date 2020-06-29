@@ -1,17 +1,17 @@
 <div id='above-the-fold'>
   <div class="wrapper large-wrapper">
     <p>
-      <h1 style="font-weight: 800">A reading list that cares about you.</h1>
+      <h1 style="font-weight: 800">The reading list for tab hoarders.</h1>
       <p>
-        Freshreader is a simple, open-source reading list app with a twist: <b>saved content disappears after 7 days</b>. This way, your list doesn't grow infinitely, and you can focus on what's relevant <i>today</i>. What joy!
+        Freshreader is a simple, open-source read-it-later app with a twist: <b>saved items disappear after 7 days</b>. This way, your list doesn't grow infinitely, and you can focus on what really matters.
       </p>
     </p>
     <% if logged_in? %>
-      <%= link_to "View my reading list", '/articles', class: "btn btn-large btn-success internal-link" %>
+      <%= link_to "View reading list", '/articles', class: "btn btn-large btn-success internal-link" %>
     <% else %>
-      <%= link_to "Get started", '/signup', method: :post, class: "btn btn-large btn-success internal-link" %>
+      <%= link_to "Create an account", '/signup', method: :post, class: "btn btn-large btn-success internal-link" %>
       <br>
-      (it's free!)
+      (no email required, and it literally takes a second—really, try it!)
     <% end %>
   </div>
   <img id="hero-image" src="<%= image_url("https://user-images.githubusercontent.com/8457808/83359026-7b9a4480-a345-11ea-8e81-7c736b2b920a.png")%>" />
@@ -19,31 +19,41 @@
 
 <div style="background: white; padding: 3em 0; border-top: 1px solid #ddd;">
   <div class="wrapper">
-    <div>
-      <h3>Save content from anywhere on the Web 🦋</h3>
-      <p>
-        If you have a browser window with tabs so small we can't even read the titles anymore, and you frequently think "I'll read/watch this later", but actually never do, then you'll love Freshreader. 
-      </p>
+    <h2>How it works</h2>
+    <p>Imagine you have a browser window filled with dozens of open tabs so small you can't even read the titles anymore. Let's tidy that up with Freshreader.
+    <div class="flex">
+      <div class="how-it-works-box flex-1">
+        <h3>1. Save for later 📌</h3>
+        <p>
+          Use the browser extensions (available for Firefox and Chrome), the Android app (iOS on the way!), or the bookmarklet to save content to your Freshreader list to read later.
+        </p>
+      </div>
 
-      <p>Use the browser extensions (available for Firefox and Chrome), the Android app (iOS on the way!), or the bookmarklet to save content to your list.
+      <div class="how-it-works-box flex-1">
+        <h3>2. Read up 👀</h3>
 
-      <h3>Let go of old saved content 🦉</h3>
+        <p>
+          When you feel like it, open up your Freshreader list and read what you find interesting from the content you saved.
+        </p>
+      </div>
 
-      <p>
-        Marie Kondo was right: clutter is unhealthy. Freshreader declutters your reading list for you by letting go of saved content after 7 days</b>. This way, your list doesn't grow infinitely, and you can focus on what's relevant today. What's more, if we don't read something within 7 days of finding it, it's likely we won't read it the next week either, so best to just let go of it.
-      </p>
+      <div class="how-it-works-box flex-1">
+        <h3>3. Let go of the rest 🦉</h3>
 
-      <h3>Trust that the future will resurface the important stuff 🦢</h3>
-
-      <p>
-        If something's important enough, it'll somehow make its way back into your life. There's no need to try and consume everything today: read what makes sense today, and trust that the future will bring you what you need.
-      </p>
+        <p>
+          Freshreader automatically declutters your reading list for you by letting go of saved content after 7 days</b>. This way, your list doesn't grow infinitely, and you can focus on what's relevant today.
+        </p>
+      </div>
     </div>
+
+    <p>
+      The mindset to have when using Freshreader is this: <b>if something's important enough, it'll somehow make its way back into your life</b>. There's no need to try and consume everything today: read what makes sense today, and trust that the future will bring you what you need. ✌️
+    </p>
 
   </div>
 </div>
 
-<div class="wrapper">
+<div class="wrapper" style="padding: 2em 1em">
   <div class="card testimonial">
     <p>
       It's such a good idea and definitely the twist I was looking for as I often find myself saving articles and never looking back at them. Thanks for creating this 🙂
@@ -65,13 +75,16 @@
         <span style="font-weight: 800;">You are already logged in.</span>
       </p>
 
-      <%= link_to "View my reading list", '/articles', class: "btn btn-large btn-success internal-link" %>
+      <%= link_to "View reading list", '/articles', class: "btn btn-large btn-success internal-link" %>
     <% else %>
       <p class="lead" style="margin-bottom: 0.5em;">
         <span style="font-weight: 800;">Sounds exciting?</span> Let's&nbsp;get&nbsp;started.
       </p>
 
       <%= link_to "Create an account", '/signup', method: :post, class: "btn btn-large btn-success internal-link" %>
+
+      <div>(no email required, and it literally takes a second—really, try it!)</div>
+
     <% end %>
   </div>
 </div>
