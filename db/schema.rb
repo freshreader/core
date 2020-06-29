@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_26_161253) do
+ActiveRecord::Schema.define(version: 2020_06_28_131227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_06_26_161253) do
     t.string "api_auth_token"
     t.datetime "api_auth_token_expires_at"
     t.boolean "is_early_adopter", default: false, null: false
+    t.string "stripe_customer_id", limit: 50
+    t.string "stripe_subscription_id"
   end
 
   add_foreign_key "articles", "users"

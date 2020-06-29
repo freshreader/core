@@ -63,3 +63,5 @@ gem "htmlentities", "~> 4.3"
 gem 'rack-attack'
 
 gem "httparty", "~> 0.18.0"
+
+gem 'stripe'

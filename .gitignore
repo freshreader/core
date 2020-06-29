@@ -18,7 +18,7 @@ pickle-email-*.html
 !/tmp/.keep
 
 config/initializers/secret_token.rb
-config/master.key
+/config/master.key
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
 # config/secrets.yml

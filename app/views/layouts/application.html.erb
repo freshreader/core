@@ -41,7 +41,7 @@
       <div class="wrapper" id="flashes-wrapper">
         <% flash.each do |name, msg| %>
           <div class="flash flash_<%= name %>">
-            <%= msg %>
+            <%= msg.html_safe %>
           </div>
         <% end %>
       </div>

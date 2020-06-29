@@ -15,6 +15,10 @@ class User < ApplicationRecord
     }
   end
 
+  def subscribed?
+    stripe_subscription_id.present?
+  end
+
   def early_adopter?
     is_early_adopter?
   end

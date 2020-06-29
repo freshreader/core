@@ -64,6 +64,8 @@ jobs:
         yarn install --pure-lockfile
 
     - name: Run Webpacker
+      env:
+        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       run: |
         NODE_ENV=test bundle exec rails webpacker:compile
 
@@ -72,6 +74,7 @@ jobs:
         PGHOST: localhost
         PGUSER: postgres
         RAILS_ENV: test
+        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       run: |
         bin/rails db:setup
 
@@ -80,6 +83,7 @@ jobs:
         PGHOST: localhost
         PGUSER: postgres
         RAILS_ENV: test
+        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       run: |
         bundle exec rake test
         bundle exec rake test:system
