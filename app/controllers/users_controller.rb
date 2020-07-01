@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      flash[:success] = "Account created successfully."
+      flash[:success] = "Welcome to Freshreader! Start below. 👇"
       redirect_to :account
     else
       flash[:error] = @user.errors.full_messages.to_sentence

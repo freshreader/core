@@ -48,7 +48,7 @@
   </div>
 
   <div class="card">
-    <div id="subscription" class="card-title">Subscription</div>
+    <div id="subscription" class="card-title">Pro subscription</div>
     <% if @user.subscribed? %>
       <p>You are on the Pro plan. Thank you for your support!</p>
       <ul>
@@ -85,7 +85,7 @@
         -->
       </ul>
 
-      <p><b>Let's upgrade that account! ✨</b></p>
+      <p><b>Let's upgrade your account! ✨</b></p>
       
       <form id="subscription-form">
         <div id="subscription-form__stripe">
@@ -97,7 +97,7 @@
         <!-- We'll put the error messages in this element -->
         <p style="font-size: 0.9em;" id="card-errors" role="alert"></p>
 
-        <button id="submit-button" class="btn-success btn btn-full-width" type="submit">Upgrade</button>
+        <button id="submit-button" class="glow-primary btn-success btn btn-full-width" type="submit">Upgrade</button>
       </form>
     <% end %>
   </div>
@@ -114,7 +114,7 @@
       This button deletes your account number and any articles left in your list, forever.
     </p>
 
-    <%= button_to 'Delete my account', :account, method: :delete, class: 'btn-danger internal-link', onclick: "return confirm('Are you sure you want to delete your Freshreader account?');"%>
+    <%= button_to 'Delete my account', :account, method: :delete, class: 'btn-danger btn-small internal-link', onclick: "return confirm('Are you sure you want to delete your Freshreader account?');"%>
   </div>
 </div>
 

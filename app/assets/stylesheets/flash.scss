@@ -1,8 +1,9 @@
 .flash {
-  padding: 0.5em;
+  padding: 0.4em 0.8em;
   background: #e8e8e8;
   color: #575757;
   border-radius: 3px;
+  display: inline-block;
 }
 
 .flash_error {
@@ -21,6 +22,6 @@
 }
 
 .flash_success {
-  background: #ace1a1;
-  color: #22662a;
+  background: hsl(129.6, 67%, 70.6%);
+  color: hsl(129.6, 67%, 22.6%);
 }

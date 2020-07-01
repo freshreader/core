@@ -3,12 +3,14 @@
   <%= form_tag '/login' do %>
     <%= label_tag :account_number, 'Account number', class: 'url-input-label' %>
     <div class="flex">
-      <%= text_field_tag :account_number, "", placeholder: '0000 0000 0000 0000', class: "flex-1" %>
-      <%= submit_tag "Login", class: 'btn-input-group no-margin' %>
+      <%= text_field_tag :account_number, "", placeholder: '0000 0000 0000 0000', class: "flex-1", autofocus: 'autofocus' %>
+      <%= submit_tag "Login", class: 'btn-input-group btn-success no-margin' %>
     </div>
 
-    <p>
-      Don't have an account yet? <%= link_to "Create an account", '/signup', method: :post, class: "internal-link" %>.
+    <p class="faded text-small">
+      Don't have an account yet?
+      <%= link_to "Create one now", '/signup', method: :post, class: "internal-link" %>
+      (literally takes a second, no email required).
     </p>
   <% end %>
 </div>

@@ -1,14 +1,23 @@
 <div class="wrapper">
-  <h2>Reading list</h2>
-  <div id="url-input-wrapper">
+  <div class="flex">
+    <div class="flex-1">
+      <h2 style="margin: 0; padding: 0;">Reading list</h2>
+    </div>
+    <a href='javascript:void(0);' class="faded internal-link text-small" id="add-by-url-btn" onclick="document.getElementById('url-input-wrapper').style.display = 'block'; document.getElementById('url-input').focus(); document.getElementById('add-by-url-btn').style.display = 'none';">
+      Add by URL +
+    </a>
+  </div>
+
+  <div style="display: none" id="url-input-wrapper">
     <%= form_for @new_article do |f| %>
       <%= f.label :name, 'Save new URL', class: 'url-input-label' %>
       <div class="flex">
         <%= f.text_field :url, id: 'url-input', placeholder: 'https://...', class: 'flex-1' %>
-        <%= f.submit 'Save', class: "btn-input-group no-margin" %>
+        <%= f.submit 'Save', class: "btn-input-group btn-success no-margin" %>
       </div>
     <% end %>
   </div>
+
   <div class="articles-wrapper">
     <% if @articles.size > 0 %>
       <% @articles.each do |article| %>
@@ -19,6 +28,8 @@
               <%= URI.parse(URI.escape(article.url)).host %>
               &middot;
               added <%= time_ago_in_words(article.created_at) %> ago
+              &middot;
+              will be let go in ~<%= time_ago_in_words(article.created_at + 7.day) %>
             </div>
             <div class="article-timestamp">
               <%= link_to 'Mark as read', article, method: :delete, class: 'internal-link' %>
@@ -27,9 +38,10 @@
         </div>
       <% end %>
     <% else %>
-      <p style="font-weight: bold;">Your list is empty. 🍃</p>
-
-      <p>Try <%= link_to "adding a random featured Wikipedia article", articles_path(article: { url: 'https://en.wikipedia.org/wiki/Special:RandomInCategory/Featured_articles' }), method: :post, class: 'internal-link' %>. Knowledge awaits! 📙</p>
+      <div class="card card-dimmed" style="font-size: 0.9em;">
+        <div class="card-title">Your list is empty. Take a moment. 🍃</div>
+        <p>If you're curious to learn something new, try <%= link_to "adding a random featured Wikipedia article", articles_path(article: { url: 'https://en.wikipedia.org/wiki/Special:RandomInCategory/Featured_articles' }), method: :post, class: 'internal-link' %>. 📙</p>
+      </div>
     <% end %>
 
     <% if @articles.size < 3 %>
