@@ -7,7 +7,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link href="https://fonts.googleapis.com/css?family=Inter:400,700|Roboto+Mono&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag %>
@@ -16,12 +15,12 @@
   <body>
     <div id="main-container">
       <div class="nav">
-        <div class="wrapper">
+        <div style="padding: 0 1em">
           <div class="flex">
             <div class="flex-1">
               <a class="internal-link no-border-bottom" href="/">
                 <img id="nav-logo" src="<%= image_url("logo.svg") %>"/>
-                Freshreader
+                <span id="logo-text">Freshreader</span>
               </a>
             </div>
             <p>
@@ -30,8 +29,8 @@
                 <%= link_to "Account", '/account', class: "internal-link nav-link #{controller?("users") ? "active" : ''}" %>
                 <%= link_to "Log out", '/logout', method: :post, class: "internal-link nav-link" %>
               <% else %>
-                <%= link_to "Create an account", '/signup', method: :post, class: "btn btn-small btn-success internal-link" %>
                 <%= link_to "Log in", '/login', method: :get, class: "internal-link nav-link" %>
+                <%= link_to "Create an account", '/signup', method: :post, class: "glow-primary no-margin btn btn-small btn-success internal-link" %>
               <% end %>
             </p>
           </div>

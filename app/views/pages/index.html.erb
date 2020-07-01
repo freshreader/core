@@ -2,89 +2,95 @@
   <div class="wrapper large-wrapper">
     <p>
       <h1 style="font-weight: 800">The reading list for tab hoarders.</h1>
+
+      <p class="lead">
+        Let's be honest: you'll never read most of your currently open tabs. And that's okay. 🙂
+      </p>
+
+
+      <div class="hero-benefits">
+        <p class="faded">
+          Save your open tabs to your Freshreader list to go from this mess...
+        </p>
+
+        <div class="mobile">
+          <p>
+            <img src="<%= image_url("mobile-packed")%>" />
+          </p>
+        </div>
+        <div class="desktop">
+          <p>
+            <img src="<%= image_url("packed")%>" />
+          </p>
+        </div>
+
+
+        <p class="faded">... to place of focus and clarity.</p>
+
+        <div class="mobile">
+          <p>
+            <img src="<%= image_url("mobile-clean")%>" />
+          </p>
+        </div>
+        <div class="desktop">
+          <p>
+            <img src="<%= image_url("clean")%>" />
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <p>
+          Now, simply moving everything into your Freshreader list wouldn't help, so here's the twist:
+        </p>
+        
+        <p>
+          <b style="background: #d7f9dd; padding: 0.4em; margin: -0.4em; border-radius: 4px; box-decoration-break: clone;">Freshreader lets go of saved items after 7 days</b>. This way, your list doesn't grow infinitely.
+        </p>
+
+        <p>
+          Letting go is key. If it's important, trust that it'll somehow make its way back into your life. 🦉
+        </p>
+      </div>
+    </p>
+
+    <p>
+      <% if logged_in? %>
+        <%= link_to "View reading list", '/articles', class: "glow-primary no-margin btn btn-large btn-success internal-link" %>
+        <div class="faded text-small">(you're already logged in and ready to go) 🚀</div>
+      <% else %>
+        <%= link_to "Create an account", '/signup', method: :post, class: "glow-primary no-margin btn btn-large btn-success internal-link" %>
+        <div class="faded text-small">(literally takes a second, no email required—really, try it!)</div>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<div style="background: #f8f8f8; padding: 4em 1em;">
+  <div class="wrapper" style="display: grid; grid-gap: 1em; grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));">
+    <div class="card testimonial">
       <p>
-        Freshreader is a simple, open-source read-it-later app with a twist: <b>saved items disappear after 7 days</b>. This way, your list doesn't grow infinitely, and you can focus on what really matters.
+        It's such a good idea and definitely the twist I was looking for as I often find myself saving articles and never looking back at them. Thanks for creating this 🙂
       </p>
-    </p>
-    <% if logged_in? %>
-      <%= link_to "View reading list", '/articles', class: "btn btn-large btn-success internal-link" %>
-    <% else %>
-      <%= link_to "Create an account", '/signup', method: :post, class: "btn btn-large btn-success internal-link" %>
-      <br>
-      (no email required, and it literally takes a second—really, try it!)
-    <% end %>
-  </div>
-  <img id="hero-image" src="<%= image_url("https://user-images.githubusercontent.com/8457808/83359026-7b9a4480-a345-11ea-8e81-7c736b2b920a.png")%>" />
-</div>
 
-<div style="background: white; padding: 3em 0; border-top: 1px solid #ddd;">
-  <div class="wrapper">
-    <h2>How it works</h2>
-    <p>Imagine you have a browser window filled with dozens of open tabs so small you can't even read the titles anymore. Let's tidy that up with Freshreader.
-    <div class="flex">
-      <div class="how-it-works-box flex-1">
-        <h3>1. Save for later 📌</h3>
-        <p>
-          Use the browser extensions (available for Firefox and Chrome), the Android app (iOS on the way!), or the bookmarklet to save content to your Freshreader list to read later.
-        </p>
-      </div>
-
-      <div class="how-it-works-box flex-1">
-        <h3>2. Read up 👀</h3>
-
-        <p>
-          When you feel like it, open up your Freshreader list and read what you find interesting from the content you saved.
-        </p>
-      </div>
-
-      <div class="how-it-works-box flex-1">
-        <h3>3. Let go of the rest 🦉</h3>
-
-        <p>
-          Freshreader automatically declutters your reading list for you by letting go of saved content after 7 days</b>. This way, your list doesn't grow infinitely, and you can focus on what's relevant today.
-        </p>
+      <div>
+        <img class="testimonial-img" src="<%= image_url("karthik.jpg")%>">
+        <span class="testimonial-name">
+          <a href="https://twitter.com/NandulaKarthik">Karthik Nandula, blogger</a>
+        </span>
       </div>
     </div>
+    <div class="card testimonial">
+      <p>
+        I looove freshreader, it really was something that came to my life unexpected, but was something I needed. Keep up the great work!!
+      </p>
 
-    <p>
-      The mindset to have when using Freshreader is this: <b>if something's important enough, it'll somehow make its way back into your life</b>. There's no need to try and consume everything today: read what makes sense today, and trust that the future will bring you what you need. ✌️
-    </p>
-
-  </div>
-</div>
-
-<div class="wrapper" style="padding: 2em 1em">
-  <div class="card testimonial">
-    <p>
-      It's such a good idea and definitely the twist I was looking for as I often find myself saving articles and never looking back at them. Thanks for creating this 🙂
-    </p>
-
-    <div>
-      <img class="testimonial-img" src="<%= image_url("karthik.jpg")%>">
-      <span class="testimonial-name">
-        <a href="https://twitter.com/NandulaKarthik">Karthik Nandula, blogger</a>
-      </span>
+      <div>
+        <img class="testimonial-img" src="<%= image_url("maximilian.png")%>">
+        <span class="testimonial-name">
+          <a href="https://twitter.com/creaturemax">Maximilian Jendrall, developer</a>
+        </span>
+      </div>
     </div>
-  </div>
-</div>
-
-<div style="background: #1c4022; color: white; padding: 3em 0;">
-  <div class="wrapper" style="text-align: center;">
-    <% if logged_in? %>
-      <p class="lead" style="margin-bottom: 0.5em;">
-        <span style="font-weight: 800;">You are already logged in.</span>
-      </p>
-
-      <%= link_to "View reading list", '/articles', class: "btn btn-large btn-success internal-link" %>
-    <% else %>
-      <p class="lead" style="margin-bottom: 0.5em;">
-        <span style="font-weight: 800;">Sounds exciting?</span> Let's&nbsp;get&nbsp;started.
-      </p>
-
-      <%= link_to "Create an account", '/signup', method: :post, class: "btn btn-large btn-success internal-link" %>
-
-      <div>(no email required, and it literally takes a second—really, try it!)</div>
-
-    <% end %>
   </div>
 </div>

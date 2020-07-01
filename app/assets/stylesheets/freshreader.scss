@@ -1,5 +1,5 @@
-$color-primary: black;
-$color-bg: #f8f9f9;
+$color-primary: #48c660;
+$color-bg: white;
 $color-text: #333333;
 $color-border: #dddddd;
 
@@ -30,7 +30,7 @@ body {
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 12em;
+  padding-bottom: 8em;
 }
 
 .active {
@@ -47,6 +47,12 @@ body {
   }
   @media (max-width: 767px) {
     font-size: 1em;
+  }
+}
+
+#logo-text {
+  @media (max-width: 30em) {
+    display: none;
   }
 }
 
@@ -108,7 +114,7 @@ a {
   //   color: #eeeeee;
   // }
 
-  color: $color-primary;
+  color: black;
   &:hover {
     color: black;
     background-color: $hover-color;
@@ -141,11 +147,21 @@ a {
 
 .flex {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
 
 .flex-1 {
   flex: 1;
+}
+
+.glow-primary {
+  box-shadow: 0 0 18px $color-primary;
+  animation: blinker 2s linear infinite;
+  @keyframes blinker {
+    50% {
+      box-shadow: 0 0 18px transparent;
+    }
+  }
 }
 
 .how-it-works-box {
@@ -178,7 +194,7 @@ input[type="text"] {
 }
 
 #url-input {
-  margin-right: -1px;
+  margin-right: 0px;
   border-radius: 3px 0 0px 3px;
 }
 
@@ -212,22 +228,23 @@ input[type="submit"] {
 
   &.btn-danger {
     color: white;
-    background: #930d0d;
+    background: #bd1c1c;
     border-color: transparent;
     padding: 0.5em 1em;
     &:hover {
-      background-color: darken(#930d0d, 5);
+      background-color: darken(#bd1c1c, 5);
       color: white;
     }
   }
   &.btn-input-group {
     border-radius: 0 3px 3px 0;
     padding: 0.5em 1em;
+    border-left: none;
   }
 
   &.btn-success {
     color: white;
-    $btn-success-bg-color: #2d843c;
+    $btn-success-bg-color: $color-primary;
     background: $btn-success-bg-color;
     border-color: transparent;
     &:hover {
@@ -261,6 +278,14 @@ input[type="submit"] {
   font-weight: bold;
   border-radius: 3px;
   margin-right: 0.5em;
+}
+
+.faded {
+  color: #666;
+}
+
+.text-small {
+  font-size: 0.8em;
 }
 
 .articles-wrapper {
@@ -314,8 +339,9 @@ input[type="submit"] {
   }
 
   background: white;
-  box-shadow: 0 2px 4px 0 hsla(0, 0%, 10%, 0.05);
+  box-shadow: 0 2px 10px 0 hsla(0, 0%, 10%, 0.1);
   border-radius: 4px;
+  border: 1px solid $color-border;
 
   &.card-dimmed {
     background: transparent;
@@ -349,11 +375,27 @@ input[type="submit"] {
 
 #above-the-fold {
   min-height: 70vh;
-  text-align: center;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
+}
+
+.hero-benefits {
+  background: white;
+  box-shadow: 0em 0.5em 2em #00000020;
+  border-radius: 5px;
+  padding: 0.4em 1.5em;
+  margin: 1.5em -1.5em;
+
+  @media (min-width: 768px) {
+    & > .desktop { display: block; }
+    & > .mobile { display: none; }
+  }
+  @media (max-width: 767px) {
+    & > .desktop { display: none; }
+    & > .mobile { display: block; }
+  }
 }
 
 #hero-image {
@@ -372,7 +414,7 @@ footer {
 }
 
 .lead {
-  font-size: 1.3em;
+  font-size: 1.25em;
   margin: 0;
 }
 
@@ -452,4 +494,8 @@ code {
   padding: 0.5em;
   background: #f7f7f7;
   border-radius: 4px;
+}
+
+img {
+  max-width: 100%;
 }
