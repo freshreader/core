@@ -65,7 +65,7 @@ class RequestHelperTest < ActiveSupport::TestCase
   end
 
   test '.extract_title_from_page handles multiple redirections' do
-    expected_title = "The Business Value of Site Speed — And How to Analyze it Step by Step"
+    expected_title = "The Business Value of Site Speed — And How to Analyze it Step by Step | by Ole Bossdorf | Project A Insights"
     expected_uri = "https://insights.project-a.com/the-business-value-of-site-speed-and-how-to-analyze-it-step-by-step"
 
     uri = 'https://calibreapp.us2.list-manage.com/track/click?u=9067434ef642e9c92aa7453d2&id=53148e0f59&e=df60486ca8'
