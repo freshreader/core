@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
-  skip_before_action :authorized, only: [:save_mobile]
-  before_action :check_save_limit, except: [:index, :destroy, :save_mobile]
+  skip_before_action :authorized, only: [:save_mobile, :save_bookmarklet]
 
   def index
     @articles = Article.where(user: current_user).sort_by(&:created_at).reverse
@@ -11,6 +10,13 @@ class ArticlesController < ApplicationController
   end
 
   def save_bookmarklet
+    unless logged_in?
+      flash[:warning] = 'You need to log in before saving this URL.'
+      return redirect_to login_url(return_to: "#{request.protocol + request.host}/save?url=#{params[:url]}")
+    end
+
+    return if check_save_limit
+
     url = RequestHelper.url_from_param(params[:url])
     title, fetched_url = RequestHelper.extract_title_from_page(url)
 
@@ -50,6 +56,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    return if check_save_limit
+
     url = RequestHelper.url_from_param(params.dig(:article, :url))
     title, fetched_url = RequestHelper.extract_title_from_page(url)
 
@@ -79,6 +87,8 @@ class ArticlesController < ApplicationController
   private
 
   def check_save_limit
+    return unless current_user
+
     if !(current_user.subscribed? || current_user.early_adopter?) && current_user.articles.size >= Article::ARTICLES_LIMIT_ON_FREE_PLAN
       flash[:warning] = "You cannot save more than #{Article::ARTICLES_LIMIT_ON_FREE_PLAN} items on the free plan. #{view_context.link_to('Upgrade to Pro', "/account#subscription", { :class => "internal-link" })} to save more items."
       redirect_to :articles

@@ -11,7 +11,11 @@ class SessionsController < ApplicationController
   def create
     if @user = User.find_by(account_number: params[:account_number].delete(' '))
       session[:user_id] = @user.id
-      redirect_to :articles
+      if params[:return_to]
+        redirect_to params[:return_to]
+      else
+        redirect_to :articles
+      end
     else
       redirect_to :login, flash: { error: "This account number does not exist." }
     end
