@@ -45,6 +45,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   def test_save_more_than_5_articles_on_free_plan_fails
     user = create_user(account_number: '6789678967896789', is_subscribed: false)
+    User.find_by(account_number: '6789678967896789').articles.destroy_all
+
     post(login_url, params: { account_number: user.account_number })
 
     assert_difference('Article.count', +Article::ARTICLES_LIMIT_ON_FREE_PLAN) do
