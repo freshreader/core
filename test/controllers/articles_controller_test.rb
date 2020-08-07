@@ -143,6 +143,24 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  def test_save_article_when_logged_out_redirects_to_login_then_saves
+    user = create_user(account_number: '1234123412341234')
+
+    assert_no_difference('Article.count') do
+      get(save_bookmarklet_url, params: { url: 'https://freshreader.app' })
+      assert_redirected_to("http://www.example.com/login?return_to=#{CGI.escape('http://www.example.com/save?url=https://freshreader.app')}")
+    end
+
+    assert_difference('Article.count', 1) do
+      post(login_url, params: {
+        account_number: user.account_number,
+        return_to: '/save?url=https://freshreader.app'
+      })
+      assert_redirected_to('http://www.example.com/save?url=https://freshreader.app')
+      get('http://www.example.com/save?url=https://freshreader.app')
+    end
+  end
+
   private
 
   def create_user(account_number:, is_subscribed: true, is_early_adopter: false)
