@@ -163,6 +163,19 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  def test_reset_should_delete_all_articles_for_logged_in_user
+    user = create_user(account_number: '1234123412341234')
+    post(login_url, params: { account_number: user.account_number })
+
+    post(articles_url, params: { article: { url: 'https://example.com/' } })
+    post(articles_url, params: { article: { url: 'https://example1.com/' } })
+
+    assert_difference('Article.count', 0) do
+      delete(article_url(-1))
+      assert_redirected_to(:articles)
+    end
+  end
+
   private
 
   def create_user(account_number:, is_subscribed: true, is_early_adopter: false)

@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :articles
+  resources :articles do
+    delete :destroy_all, on: :collection
+  end
 
   get '/save', to: 'articles#save_bookmarklet', as: :save_bookmarklet
   get '/save-mobile', to: 'articles#save_mobile', as: :save_mobile
