@@ -29,7 +29,7 @@
               &middot;
               added <%= time_ago_in_words(article.created_at) %> ago
               &middot;
-              will be let go in ~<%= time_ago_in_words(article.created_at + 7.day) %>
+              will be let go in ~<%= time_ago_in_words(article.updated_at + 7.day) %>
             </div>
             <div class="article-timestamp">
               <%= link_to 'Mark as read', article, method: :delete, class: 'internal-link' %>

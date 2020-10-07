@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   skip_before_action :authorized, only: [:save_mobile, :save_bookmarklet]
 
   def index
-    @articles = Article.where(user: current_user).sort_by(&:created_at).reverse
+    @articles = Article.where(user: current_user)
 
     @new_article = Article.new
 
@@ -61,9 +61,18 @@ class ArticlesController < ApplicationController
     url = RequestHelper.url_from_param(params.dig(:article, :url))
     title, fetched_url = RequestHelper.extract_title_from_page(url)
 
-    new_article = Article.new(user: current_user, url: fetched_url, title: title)
+    # check if article already exists
+    article = current_user.articles.find_by_url(fetched_url)
 
-    if new_article.save
+    if article
+      article.update(updated_at: Time.now)
+    else
+      new_article = Article.new(user: current_user, url: fetched_url, title: title)
+    end
+
+    if article
+      flash[:success] = 'This was already in your list, so it\'s now at the top for easier access. 👇'
+    elsif new_article.save
       flash[:success] = 'Saved successfully.'
     else
       flash[:error] = new_article.errors.full_messages.to_sentence

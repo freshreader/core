@@ -163,6 +163,21 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  def test_save_already_existing_acticle_will_only_update
+    user = create_user(account_number: '1234123412341234')
+    post(login_url, params: { account_number: user.account_number })
+    post(articles_url, params: { article: { url: 'https://android-js.github.io' } })
+
+    inserted_article = Article.last
+
+    updated_article = assert_no_difference('Article.count') do
+      post(articles_url, params: { article: { url: 'https://android-js.github.io' } })
+      assert_redirected_to(:articles)
+      Article.last
+    end
+    assert_not_equal(inserted_article.updated_at, updated_article.updated_at)
+  end
+
   private
 
   def create_user(account_number:, is_subscribed: true, is_early_adopter: false)

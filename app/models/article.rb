@@ -4,6 +4,8 @@ class Article < ApplicationRecord
   belongs_to :user
   validates :url, presence: true, url: true
 
+  default_scope { order(updated_at: :desc) }
+
   include ActiveModel::Serializers::JSON
 
   def attributes
