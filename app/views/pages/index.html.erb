@@ -62,8 +62,7 @@
         <div class="faded text-small">(you're already logged in and ready to go) 🚀</div>
       <% else %>
         <%= link_to t(:create_an_account), '/signup', method: :post, class: "glow-primary no-margin btn btn-large btn-success internal-link" %>
-        <div class="faded text-small"></div>
-        <%= t(:no_email_required) %>
+        <div class="faded text-small"><%= t(:no_email_required) %></div>
       <% end %>
     </p>
   </div>
