@@ -1,16 +1,16 @@
 <div id='above-the-fold'>
   <div class="wrapper large-wrapper">
     <p>
-      <h1 style="font-weight: 800">The reading list for tab hoarders.</h1>
+      <h1 style="font-weight: 800"><%= t(:index_heading) %></h1>
 
       <p class="lead">
-        Let's be honest: you'll never read most of your currently open tabs. And that's okay. 🙂
+        <%= t(:lets_be_honest) %>
       </p>
 
 
       <div class="hero-benefits">
         <p class="faded">
-          Save your open tabs to your Freshreader list to go from this mess...
+          <%= t(:save_your_open_tabs) %>
         </p>
 
         <div class="mobile">
@@ -25,7 +25,7 @@
         </div>
 
 
-        <p class="faded">... to a place of focus and clarity.</p>
+        <p class="faded"><%= t(:place_of_focus) %></p>
 
         <div class="mobile">
           <p>
@@ -41,15 +41,17 @@
 
       <div>
         <p>
-          Now, simply moving everything into your Freshreader list wouldn't help, so here's the twist:
+          <%= t(:heres_the_twist) %>
         </p>
         
         <p>
-          <b style="background: #d7f9dd; padding: 0.4em; margin: -0.4em; border-radius: 4px; box-decoration-break: clone;">Freshreader lets go of saved items after 7 days</b>. This way, your list doesn't grow infinitely.
+          <b style="background: #d7f9dd; padding: 0.4em; margin: -0.4em; border-radius: 4px; box-decoration-break: clone;">
+          <%= t(:lets_go) %></b>
+          <%= t(:grow_infinitely) %>
         </p>
 
         <p>
-          Letting go is key. If it's important, trust that it'll somehow make its way back into your life. 🦉
+          <%= t(:letting_go_is_key) %>
         </p>
       </div>
     </p>
@@ -59,8 +61,9 @@
         <%= link_to "View reading list", '/articles', class: "glow-primary no-margin btn btn-large btn-success internal-link" %>
         <div class="faded text-small">(you're already logged in and ready to go) 🚀</div>
       <% else %>
-        <%= link_to "Create an account", '/signup', method: :post, class: "glow-primary no-margin btn btn-large btn-success internal-link" %>
-        <div class="faded text-small">(literally takes a second, no email required—really, try it!)</div>
+        <%= link_to t(:create_an_account), '/signup', method: :post, class: "glow-primary no-margin btn btn-large btn-success internal-link" %>
+        <div class="faded text-small"></div>
+        <%= t(:no_email_required) %>
       <% end %>
     </p>
   </div>
@@ -70,25 +73,25 @@
   <div class="wrapper" style="display: grid; grid-gap: 1em; grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));">
     <div class="card testimonial">
       <p>
-        It's such a good idea and definitely the twist I was looking for as I often find myself saving articles and never looking back at them. Thanks for creating this 🙂
+        <%= t(:testimonial_1) %>
       </p>
 
       <div>
         <img class="testimonial-img" src="<%= image_url("karthik.jpg")%>">
         <span class="testimonial-name">
-          <a href="https://twitter.com/NandulaKarthik">Karthik Nandula, blogger</a>
+          <a href="https://twitter.com/NandulaKarthik">Karthik Nandula, <%= t(:testimonial_1_job) %></a>
         </span>
       </div>
     </div>
     <div class="card testimonial">
       <p>
-        I looove freshreader, it really was something that came to my life unexpected, but was something I needed. Keep up the great work!!
+        <%= t(:testimonial_2) %>
       </p>
 
       <div>
         <img class="testimonial-img" src="<%= image_url("maximilian.png")%>">
         <span class="testimonial-name">
-          <a href="https://twitter.com/creaturemax">Maximilian Jendrall, developer</a>
+          <a href="https://twitter.com/creaturemax">Maximilian Jendrall, <%= t(:testimonial_2_job) %></a>
         </span>
       </div>
     </div>
