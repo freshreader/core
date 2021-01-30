@@ -45,7 +45,7 @@ class RequestHelperTest < ActiveSupport::TestCase
   end
 
   test '.extract_title_from_page falls back to http if necessary' do
-    expected_title = "NeverSSL - Connecting ..."
+    expected_title = "NeverSSL - helping you get online"
     expected_uri = "http://neverssl.com/"
 
     actual_title, actual_uri = RequestHelper.extract_title_from_page('http://neverssl.com/')
