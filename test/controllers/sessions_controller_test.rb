@@ -15,6 +15,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to(:articles)
   end
 
+  def test_login_succeeds_with_valid_account_number_and_empty_return_to_param
+    user = User.new(account_number: '1234123412341234')
+    user.save
+    post(login_url, params: { return_to: '  ', account_number: user.account_number })
+
+    assert_redirected_to(:articles)
+  end
+
   def test_login_fails_with_non_existent_account_number
     user = User.new(account_number: '1234123412341234')
     user.save

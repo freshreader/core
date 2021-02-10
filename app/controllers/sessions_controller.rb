@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   def create
     if @user = User.find_by(account_number: params[:account_number].delete(' '))
       session[:user_id] = @user.id
-      if params[:return_to]
+      if params[:return_to].present?
         redirect_to params[:return_to]
       else
         redirect_to :articles
