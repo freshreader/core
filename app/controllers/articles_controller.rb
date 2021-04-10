@@ -84,6 +84,16 @@ class ArticlesController < ApplicationController
     redirect_to :articles
   end
 
+  def destroy_all
+    articles_to_destroy = current_user.articles
+    if articles_to_destroy&.destroy_all
+      flash[:success] = 'Your reading list is now empty. 🍃'
+    else
+      flash[:error] = 'There was an issue clearing your reading list.'
+    end
+    redirect_to :articles
+  end
+
   private
 
   def check_save_limit

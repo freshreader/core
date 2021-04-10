@@ -6,6 +6,7 @@
     <a href='javascript:void(0);' class="faded internal-link text-small" id="add-by-url-btn" onclick="document.getElementById('url-input-wrapper').style.display = 'block'; document.getElementById('url-input').focus(); document.getElementById('add-by-url-btn').style.display = 'none';">
       Add by URL +
     </a>
+    <%= link_to 'Reset', destroy_all_articles_path, method: :delete, class: 'internal-link nav-link faded', style: 'margin-left: 15px;' %>
   </div>
 
   <div style="display: none" id="url-input-wrapper">
