@@ -6,9 +6,12 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
+    "dns-packet": "^1.3.2",
     "is-svg": "4.2.2",
-    "ssri": "8.0.1",
+    "postcss": "^8.2.10",
+    "ssri": "^7.1.1",
     "turbolinks": "^5.2.0",
+    "ws": "^7.4.6",
     "y18n": "4.0.1"
   },
   "version": "0.1.0",
