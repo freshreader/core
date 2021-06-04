@@ -29,8 +29,8 @@
                 <%= link_to "Account", '/account', class: "internal-link nav-link #{controller?("users") ? "active" : ''}" %>
                 <%= link_to "Log out", '/logout', method: :post, class: "internal-link nav-link" %>
               <% else %>
-                <%= link_to "Log in", '/login', method: :get, class: "internal-link nav-link" %>
-                <%= link_to "Create an account", '/signup', method: :post, class: "glow-primary no-margin btn btn-small btn-success internal-link" %>
+                <%= link_to t(:log_in), '/login', method: :get, class: "internal-link nav-link" %>
+                <%= link_to t(:create_an_account), '/signup', method: :post, class: "glow-primary no-margin btn btn-small btn-success internal-link" %>
               <% end %>
             </p>
           </div>
@@ -54,14 +54,14 @@
           <p>
           </p>
           <p>
-            Built by <a target="_blank" href="https://twitter.com/vaillancourtmax">Maxime Vaillancourt</a> in Montreal, Canada ✌️
+          <%= t(:built_by) %><a target="_blank" href="https://twitter.com/vaillancourtmax">Maxime Vaillancourt</a> <%= t(:where) %>
           </p>
           <div>
-            <%= link_to "🍃 A few words on privacy", '/privacy', class: "internal-link" %>
+            <%= link_to t(:privacy), '/privacy', class: "internal-link" %>
             &middot;
-            <%= link_to "📖 Transparency", '/transparency', class: "internal-link" %>
+            <%= link_to t(:transparency), '/transparency', class: "internal-link" %>
             &middot;
-            <%= link_to "👨‍💻 Open source", 'https://github.com/freshreader' %>
+            <%= link_to t(:open_source), 'https://github.com/freshreader' %>
           </div>
         </div>
       </footer>
