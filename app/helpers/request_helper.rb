@@ -15,7 +15,7 @@ module RequestHelper
   end
 
   def url_from_param(param_value)
-    URI.decode(param_value.strip)
+    URI::Parser.new.unescape(param_value.strip)
   end
 
   private
@@ -31,6 +31,6 @@ module RequestHelper
       uri_str = "https://#{uri_str}"
     end
 
-    HTTParty.get(URI.escape(uri_str))
+    HTTParty.get(URI::Parser.new.escape(uri_str))
   end
 end
